@@ -1,5 +1,3 @@
-// Define the LED pin for ESP32C3
-#define LED_BUILTIN 8
 
 #include "settings.h"
 #include "wifi_handler.h"
@@ -8,6 +6,8 @@
 
 void setup() {
   Serial.begin(115200);
+  while (!Serial) { delay(10); } // Wait for Serial (optional, for native USB)
+  Serial.println("\n[BOOT] ESP32C3 Watering System starting...");
   pinMode(LED_BUILTIN, OUTPUT);
   connectToWiFi(WIFI_SSID, WIFI_PASS);
 }
