@@ -1,17 +1,26 @@
 
+#include <Arduino.h>
 #include "settings.h"
 #include "wifi_handler.h"
 
+/**
+ * @file system.ino
+ * @brief Main entry point for ESP32C3 Watering System.
+ */
 
-
+/**
+ * @brief Arduino setup function. Initializes Serial, LED, and WiFi.
+ */
 void setup() {
   Serial.begin(115200);
-  while (!Serial) { delay(10); } // Wait for Serial (optional, for native USB)
-  Serial.println("\n[BOOT] ESP32C3 Watering System starting...");
+  Serial.println("Start");
   pinMode(LED_BUILTIN, OUTPUT);
   connectToWiFi(WIFI_SSID, WIFI_PASS);
 }
 
+/**
+ * @brief Arduino main loop. Blinks LED and prints to Serial.
+ */
 void loop() {
   digitalWrite(LED_BUILTIN, HIGH); // turn the LED on
   delay(100);                      // wait 100 ms

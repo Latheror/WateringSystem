@@ -2,6 +2,15 @@
 #include <WiFi.h>
 #include "wifi_handler.h"
 
+/**
+ * @brief Connects to a WiFi network and prints status to Serial.
+ *
+ * Attempts to connect to the specified WiFi network, printing progress
+ * and result to the Serial monitor. Retries for up to 10 seconds.
+ *
+ * @param ssid     WiFi SSID (network name)
+ * @param password WiFi password
+ */
 void connectToWiFi(const char* ssid, const char* password) {
     WiFi.begin(ssid, password);
     Serial.print("Connecting to WiFi");
