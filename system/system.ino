@@ -19,6 +19,19 @@ void setup() {
 
     pinMode(LED_BUILTIN, OUTPUT);
     pinMode(SOIL_MOISTURE_SENSOR_DIGITAL_PIN, INPUT);
+    pinMode(RELAY_PIN, OUTPUT);
+
+    // Define relay on/off levels based on module wiring
+#if RELAY_ACTIVE_LOW
+#define RELAY_ON LOW
+#define RELAY_OFF HIGH
+#else
+#define RELAY_ON HIGH
+#define RELAY_OFF LOW
+#endif
+
+    // Ensure relay starts off
+    digitalWrite(RELAY_PIN, RELAY_OFF);
 
     connectToWiFi(WIFI_SSID, WIFI_PASS);
 }
@@ -41,6 +54,15 @@ void loop() {
 
     Serial.print(" | Status: ");
     Serial.println(soilDigital ? "DRY" : "WET");
+
+    // Control relay: turn ON when soil is DRY, OFF when WET
+    if (soilDigital) {
+        digitalWrite(RELAY_PIN, RELAY_ON);
+        Serial.println("Relay: ON");
+    } else {
+        digitalWrite(RELAY_PIN, RELAY_OFF);
+        Serial.println("Relay: OFF");
+    }
 
     digitalWrite(LED_BUILTIN, HIGH);
     delay(200);

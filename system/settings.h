@@ -19,4 +19,10 @@
 // Digital pin connected to sensor digital output (DO)
 #define SOIL_MOISTURE_SENSOR_DIGITAL_PIN 1
 
+// Relay configuration
+// GPIO pin controlling the relay module (pump/valve)
+#define RELAY_PIN 2
+// Set to 1 if the relay module is active LOW (common modules), 0 if active HIGH
+#define RELAY_ACTIVE_LOW 1
+
 #endif // SETTINGS_H
