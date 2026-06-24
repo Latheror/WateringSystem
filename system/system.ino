@@ -1,11 +1,13 @@
 #include <Arduino.h>
 #include "settings.h"
 #include "wifi_handler.h"
+#include "pump_handler.h"
 
 /**
  * @file system.ino
  * @brief Main entry point for ESP32C3 Watering System.
  */
+
 
 // Soil moisture sensor pins are defined in settings.h as
 // SOIL_MOISTURE_SENSOR_ANALOG_PIN and SOIL_MOISTURE_SENSOR_DIGITAL_PIN
@@ -142,13 +144,15 @@ void loop() {
     Serial.print(" | Status: ");
     Serial.println(soilDigital ? "DRY" : "WET");
 
-    // Control relay: turn ON when soil is DRY, OFF when WET
-    if (soilDigital) {
-        digitalWrite(RELAY_PIN, RELAY_ON);
-        Serial.println("Relay: ON");
-    } else {
-        digitalWrite(RELAY_PIN, RELAY_OFF);
-        Serial.println("Relay: OFF");
+    // Control relay: turn ON when soil is DRY, OFF when WET (only if not manually watering)
+    if (!isWatering) {
+        if (soilDigital) {
+            setPumpState(true);
+            Serial.println("Relay: ON");
+        } else {
+            setPumpState(false);
+            Serial.println("Relay: OFF");
+        }
     }
 
     // Update global variables for web app
@@ -164,7 +168,7 @@ void loop() {
 
     // Non-blocking watering timer
     if (isWatering && (millis() - wateringStartTime >= 10000)) {
-        digitalWrite(RELAY_PIN, RELAY_OFF);
+        setPumpState(false);
         isWatering = false;
         Serial.println("Watering complete");
     }
