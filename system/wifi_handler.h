@@ -2,6 +2,8 @@
 #define WIFI_HANDLER_H
 
 #include <Arduino.h>
+#include <WiFi.h>
+#include <WebServer.h>
 
 /**
  * @file wifi_handler.h
@@ -18,5 +20,10 @@
  * @param password WiFi password
  */
 void connectToWiFi(const char* ssid, const char* password);
+
+/**
+ * @brief Web server instance.
+ */
+extern WebServer server;
 
 #endif // WIFI_HANDLER_H

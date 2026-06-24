@@ -19,6 +19,12 @@
 // Digital pin connected to sensor digital output (DO)
 #define SOIL_MOISTURE_SENSOR_DIGITAL_PIN 1
 
+// Solar panel and battery pins
+// Analog pin for solar panel voltage
+#define SOLAR_VOLTAGE_PIN 3
+// Analog pin for battery level
+#define BATTERY_LEVEL_PIN 4
+
 // Relay configuration
 // GPIO pin controlling the relay module (pump/valve)
 #define RELAY_PIN 2
