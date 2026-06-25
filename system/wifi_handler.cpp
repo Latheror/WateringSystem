@@ -3,8 +3,6 @@
 #include <WebServer.h>
 #include "wifi_handler.h"
 
-WebServer server(80);
-
 /**
  * @brief Connects to a WiFi network and prints status to Serial.
  *
