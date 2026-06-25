@@ -35,7 +35,7 @@ void handleRoot() {
     html += ".card p { margin: 0; font-size: 1.5em; font-weight: bold; }";
     html += ".status-wet { color: #27ae60; }";
     html += ".status-dry { color: #e67e22; }";
-    html += ".pump-on { color: #e74c3c; animation: blink 1s infinite; }";
+    html += ".pump-on { color: #27ae60; animation: blink 1s infinite; }";
     html += ".pump-off { color: #95a5a6; }";
     html += "@keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }";
     html += ".btn-container { margin-top: 30px; text-align: center; }";
