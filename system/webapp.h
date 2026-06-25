@@ -1,9 +1,10 @@
-#ifndef WEBPAPP_H
-#define WEBPAPP_H
+#ifndef WEBAPP_H
+#define WEBAPP_H
 
 #include <Arduino.h>
 #include <WebServer.h>
 #include "settings.h"
+
 extern WebServer server;
 
 /**
@@ -11,14 +12,14 @@ extern WebServer server;
  * @brief Web application handler for the Watering System.
  */
 
-// Global variables for web app
+// =========================
+// READ-ONLY DISPLAY STATE
+// (updated by system.ino)
+// =========================
+
 extern float solarVoltage;
 extern float batteryVoltage;
 extern bool pumpActive;
-
-// Non-blocking variables for watering
-extern unsigned long wateringStartTime;
-extern bool isWatering;
 
 /**
  * @brief Handle root page request.
@@ -27,12 +28,20 @@ void handleRoot();
 
 /**
  * @brief Handle manual watering request.
+ * Sends event to system.ino
  */
 void handleManualWatering();
+
+/**
+ * @brief Handle manual watering request from web.
+ * Signals system.ino to start manual watering.
+ */
+void onManualWateringRequest();
 
 /**
  * @brief Initialize the web server routes.
  */
 void initWebApp();
 
-#endif // WEBPAPP_H
+
+#endif // WEBAPP_H
