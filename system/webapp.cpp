@@ -1,136 +1,208 @@
 #include <Arduino.h>
+#include <WebServer.h>
 #include "soil_moisture_sensor.h"
 #include "webapp.h"
 
+// =========================
+// External dependencies
+// =========================
+extern WebServer server;
+extern bool pumpActive;
+extern void onManualWateringRequest();
 
-// Global variables (ONLY for display, not control)
+// =========================
+// Global sensor + values
+// =========================
+SoilMoistureSensor soilSensor(
+    SOIL_MOISTURE_SENSOR_ANALOG_PIN,
+    SOIL_MOISTURE_SENSOR_DIGITAL_PIN);
+
 float solarVoltage = 0.0;
 float batteryVoltage = 0.0;
 
-/**
- * @brief Initialize the web server routes.
- */
-void initWebApp() {
-    server.on("/", handleRoot);
-    server.on("/water", handleManualWatering);
-    server.begin();
-    Serial.println("Web server started on port 80");
+// =========================
+// HTML TEMPLATE (Flash)
+// =========================
+const char PAGE_TEMPLATE[] PROGMEM = R"rawliteral(
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!-- FIX MOBILE SCALING -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- AUTO REFRESH -->
+<meta http-equiv="refresh" content="2">
+
+<title>Watering System</title>
+
+<style>
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: #eef2f7;
+    margin: 0;
+    padding: 16px;
+    color: #333;
 }
 
-/**
- * @brief Handle root page request.
- */
-void handleRoot() {
+.container {
+    max-width: 600px;
+    margin: auto;
+}
 
-    String html = "";
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.6em;
+}
 
-    // =========================
-    // HTML + STYLE HEADER
-    // =========================
-    html += "<!DOCTYPE html><html><head>";
-    html += "<meta charset='UTF-8'>";
-    html += "<meta name='viewport' content='width=device-width, initial-scale=1.0'>";
-    html += "<meta http-equiv='refresh' content='1'>";
-    html += "<title>Watering System</title>";
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
 
-    html += "<style>";
+@media (max-width: 600px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
 
-    html += "body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #eef2f7; margin: 0; padding: 20px; color: #333; }";
-    html += ".container { max-width: 600px; margin: 0 auto; }";
-    html += "h1 { text-align: center; color: #2c3e50; margin-bottom: 30px; }";
+    body {
+        padding: 12px;
+    }
+}
 
-    html += ".grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }";
+.card {
+    background: white;
+    padding: 16px;
+    border-radius: 14px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+}
 
-    html += ".card { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center; border-left: 6px solid transparent; }";
+.card h2 {
+    font-size: 0.8em;
+    color: #777;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
 
-    html += ".battery { border-left-color: #f1c40f; }";
-    html += ".solar { border-left-color: #f39c12; }";
-    html += ".soil { border-left-color: #27ae60; }";
-    html += ".pump { border-left-color: #3498db; }";
+.value {
+    font-size: 1.5em;
+    font-weight: bold;
+}
 
-    html += ".card h2 { margin: 0 0 10px 0; font-size: 0.85em; color: #7f8c8d; text-transform: uppercase; letter-spacing: 1px; }";
+.soil { border-left: 6px solid #27ae60; }
+.solar { border-left: 6px solid #f39c12; }
+.battery { border-left: 6px solid #f1c40f; }
+.pump { border-left: 6px solid #3498db; }
 
-    html += ".value { font-size: 1.6em; font-weight: bold; margin-top: 8px; display: block; }";
+button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 14px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 40px;
+    background: #3498db;
+    color: white;
+}
 
-    html += ".icon { font-size: 1.4em; margin-right: 6px; }";
+button:active {
+    transform: scale(0.98);
+}
+</style>
 
-    html += ".status-wet { color: #27ae60; }";
-    html += ".status-dry { color: #e67e22; }";
-    html += ".pump-on { color: #27ae60; animation: blink 1s infinite; }";
-    html += ".pump-off { color: #95a5a6; }";
+<script>
+async function triggerWatering() {
+    await fetch('/water');
+}
+</script>
 
-    html += "@keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }";
+</head>
 
-    html += ".btn-container { margin-top: 30px; text-align: center; }";
+<body>
 
-    html += "button { padding: 15px 30px; font-size: 1.1em; background-color: #3498db; color: white; border: none; border-radius: 50px; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }";
-    html += "button:hover { background-color: #2980b9; }";
-    html += "button:active { transform: scale(0.98); }";
+<div class="container">
 
-    html += "</style></head><body>";
+<h1>🌿 Watering System</h1>
 
-    // =========================
-    // CONTENT
-    // =========================
-    html += "<div class='container'>";
-    html += "<h1>🌿 Watering System</h1>";
+<div class="grid">
 
-    html += "<div class='grid'>";
+<div class="card soil">
+<h2>Soil Status</h2>
+<div class="value">%SOIL%</div>
+</div>
 
-    // Soil Status
-    SoilMoistureSensor soilSensor(SOIL_MOISTURE_SENSOR_ANALOG_PIN, SOIL_MOISTURE_SENSOR_DIGITAL_PIN);
+<div class="card solar">
+<h2>Solar Voltage</h2>
+<div class="value">%SOLAR% V</div>
+</div>
+
+<div class="card battery">
+<h2>Battery Voltage</h2>
+<div class="value">%BATTERY% V</div>
+</div>
+
+<div class="card pump">
+<h2>Pump Status</h2>
+<div class="value">%PUMP%</div>
+</div>
+
+</div>
+
+<button onclick="triggerWatering()">
+💧 Manual Watering (10s)
+</button>
+
+</div>
+
+</body>
+</html>
+)rawliteral";
+
+// =========================
+// Helpers
+// =========================
+static String renderPage()
+{
+    String page = FPSTR(PAGE_TEMPLATE);
+
     SoilStatus soilStatus = soilSensor.getSoilStatus();
 
-    html += "<div class='card soil'>";
-    html += "<div><span class='icon'>🌱</span>Soil Status</div>";
-    html += "<span class='value " + String(soilStatus == SoilStatus::DRY ? "status-dry" : "status-wet") + "'>";
-    html += (soilStatus == SoilStatus::DRY ? "🌵 DRY" : "💧 WET");
-    html += "</span></div>";
+    page.replace("%SOIL%",
+        soilStatus == SoilStatus::DRY ? "🌵 DRY" : "💧 WET");
 
+    page.replace("%SOLAR%", String(solarVoltage, 2));
+    page.replace("%BATTERY%", String(batteryVoltage, 2));
+    page.replace("%PUMP%", pumpActive ? "🟢 ON" : "⚪ OFF");
 
-
-    // Solar Voltage
-    html += "<div class='card solar'>";
-    html += "<div><span class='icon'>☀️</span>Solar Voltage</div>";
-    html += "<span class='value'>" + String(solarVoltage, 2) + " V</span>";
-    html += "</div>";
-
-    // Battery
-    html += "<div class='card battery'>";
-    html += "<div><span class='icon'>🔋</span>Battery Level</div>";
-    html += "<span class='value'>" + String(batteryVoltage, 2) + " V</span>";
-    html += "</div>";
-
-    // Pump Status
-    html += "<div class='card pump'>";
-    html += "<div><span class='icon'>🚰</span>Pump Status</div>";
-    html += "<span class='value " + String(pumpActive ? "pump-on" : "pump-off") + "'>";
-    html += (pumpActive ? "🟢 ON" : "⚪ OFF");
-    html += "</span></div>";
-
-    html += "</div>"; // grid
-
-    // =========================
-    // BUTTON
-    // =========================
-    html += "<div class='btn-container'>";
-    html += "<button onclick=\"fetch('/water').then(() => location.reload())\">";
-    html += "💧 Manual Watering (10s)";
-    html += "</button>";
-    html += "</div>";
-
-    html += "</div>"; // container
-
-    html += "</body></html>";
-
-    server.send(200, "text/html", html);
+    return page;
 }
 
-/**
- * @brief Handle manual watering request.
- * ONLY sends command to system.ino via shared flag.
- */
-void handleManualWatering() {
+// =========================
+// Web server setup
+// =========================
+void initWebApp()
+{
+    server.on("/", handleRoot);
+    server.on("/water", handleManualWatering);
 
+    server.begin();
+    Serial.println("Web server started");
+}
+
+// =========================
+// Routes
+// =========================
+void handleRoot()
+{
+    server.send(200, "text/html", renderPage());
+}
+
+void handleManualWatering()
+{
     onManualWateringRequest();
+    server.send(200, "text/plain", "OK");
 }
