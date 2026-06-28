@@ -1,4 +1,7 @@
+#include <Arduino.h>
+#include "soil_moisture_sensor.h"
 #include "webapp.h"
+
 
 // Global variables (ONLY for display, not control)
 float solarVoltage = 0.0;
@@ -75,13 +78,16 @@ void handleRoot() {
     html += "<div class='grid'>";
 
     // Soil Status
-    bool soilDry = digitalRead(SOIL_MOISTURE_SENSOR_DIGITAL_PIN);
+    SoilMoistureSensor soilSensor(SOIL_MOISTURE_SENSOR_ANALOG_PIN, SOIL_MOISTURE_SENSOR_DIGITAL_PIN);
+    SoilStatus soilStatus = soilSensor.getSoilStatus();
 
     html += "<div class='card soil'>";
     html += "<div><span class='icon'>🌱</span>Soil Status</div>";
-    html += "<span class='value " + String(soilDry ? "status-dry" : "status-wet") + "'>";
-    html += (soilDry ? "🌵 DRY" : "💧 WET");
+    html += "<span class='value " + String(soilStatus == SoilStatus::DRY ? "status-dry" : "status-wet") + "'>";
+    html += (soilStatus == SoilStatus::DRY ? "🌵 DRY" : "💧 WET");
     html += "</span></div>";
+
+
 
     // Solar Voltage
     html += "<div class='card solar'>";

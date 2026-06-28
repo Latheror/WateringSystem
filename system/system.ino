@@ -5,6 +5,7 @@
 #include "wifi_handler.h"
 #include "pump_handler.h"
 #include "webapp.h"
+#include "soil_moisture_sensor.h"
 
 WebServer server(80);
 
@@ -57,20 +58,24 @@ void loop() {
     // =========================
     // SENSOR READS
     // =========================
-    int soilAnalog = analogRead(SOIL_MOISTURE_SENSOR_ANALOG_PIN);
-    int soilDigital = digitalRead(SOIL_MOISTURE_SENSOR_DIGITAL_PIN);
+    SoilMoistureSensor soilSensor(SOIL_MOISTURE_SENSOR_ANALOG_PIN, SOIL_MOISTURE_SENSOR_DIGITAL_PIN);
+
+    float soilMoisture = soilSensor.read();
+    SoilStatus soilStatus = soilSensor.getSoilStatus();
 
     int solarRaw = analogRead(SOLAR_VOLTAGE_PIN);
     int batteryRaw = analogRead(BATTERY_LEVEL_PIN);
 
-    Serial.print("Soil Analog: ");
-    Serial.print(soilAnalog);
-
-    Serial.print(" | Soil Digital: ");
-    Serial.print(soilDigital);
-
-    Serial.print(" | Status: ");
-    Serial.println(soilDigital ? "DRY" : "WET");
+    Serial.print("Soil Moisture: ");
+    Serial.print(soilMoisture);
+    Serial.print("% | Status: ");
+    if (soilStatus == SoilStatus::DRY) {
+        Serial.println("DRY");
+    } else if (soilStatus == SoilStatus::WET) {
+        Serial.println("WET");
+    } else {
+        Serial.println("UNKNOWN");
+    }
 
     // =========================
     // MANUAL MODE TIMEOUT
@@ -88,7 +93,8 @@ void loop() {
     if (manualMode) {
         shouldWater = true;
     } else {
-        shouldWater = soilDigital;
+        // Use the digital status from the sensor object
+        shouldWater = (soilStatus == SoilStatus::DRY);
     }
 
     // =========================
