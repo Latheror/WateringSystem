@@ -30,7 +30,7 @@ void handleRoot() {
     html += "<!DOCTYPE html><html><head>";
     html += "<meta charset='UTF-8'>";
     html += "<meta name='viewport' content='width=device-width, initial-scale=1.0'>";
-    html += "<meta http-equiv='refresh' content='2'>";
+    html += "<meta http-equiv='refresh' content='1'>";
     html += "<title>Watering System</title>";
 
     html += "<style>";
