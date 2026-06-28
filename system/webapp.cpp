@@ -86,7 +86,7 @@ void handleRoot() {
     // Solar Voltage
     html += "<div class='card solar'>";
     html += "<div><span class='icon'>☀️</span>Solar Voltage</div>";
-    html += "<span class='value'>" + String(solarVoltage, 2) + " V ⚡</span>";
+    html += "<span class='value'>" + String(solarVoltage, 2) + " V</span>";
     html += "</div>";
 
     // Battery
@@ -99,7 +99,7 @@ void handleRoot() {
     html += "<div class='card pump'>";
     html += "<div><span class='icon'>🚰</span>Pump Status</div>";
     html += "<span class='value " + String(pumpActive ? "pump-on" : "pump-off") + "'>";
-    html += (pumpActive ? "🟢 ACTIVE" : "⚪ OFF");
+    html += (pumpActive ? "🟢 ON" : "⚪ OFF");
     html += "</span></div>";
 
     html += "</div>"; // grid
