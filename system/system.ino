@@ -6,6 +6,7 @@
 #include "pump_handler.h"
 #include "webapp.h"
 #include "soil_moisture_sensor.h"
+#include "voltage_sensor.h"
 
 WebServer server(80);
 
@@ -59,12 +60,13 @@ void loop() {
     // SENSOR READS
     // =========================
     SoilMoistureSensor soilSensor(SOIL_MOISTURE_SENSOR_ANALOG_PIN, SOIL_MOISTURE_SENSOR_DIGITAL_PIN);
+    VoltageSensor solarSensor(SOLAR_VOLTAGE_PIN);
+    VoltageSensor batterySensor(BATTERY_LEVEL_PIN);
 
     float soilMoisture = soilSensor.read();
     SoilStatus soilStatus = soilSensor.getSoilStatus();
-
-    int solarRaw = analogRead(SOLAR_VOLTAGE_PIN);
-    int batteryRaw = analogRead(BATTERY_LEVEL_PIN);
+    float solarVoltageReading = solarSensor.read();
+    float batteryVoltageReading = batterySensor.read();
 
     Serial.print("Soil Moisture: ");
     Serial.print(soilMoisture);
@@ -108,8 +110,8 @@ void loop() {
     // =========================
     // WEB DATA UPDATE
     // =========================
-    solarVoltage = (solarRaw * 3.3) / 4095.0;
-    batteryVoltage = (batteryRaw * 3.3) / 4095.0;
+    solarVoltage = solarVoltageReading;
+    batteryVoltage = batteryVoltageReading;
 
     // =========================
     // STATUS LED
