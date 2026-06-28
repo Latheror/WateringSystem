@@ -1,14 +1,14 @@
 #include <Arduino.h>
 #include "soil_moisture_sensor.h"
 
-SoilMoistureSensor::SoilMoistureSensor(int analogPin, int digitalPin) 
-    : _analogPin(analogPin), _digitalPin(digitalPin) {}
+SoilMoistureSensor::SoilMoistureSensor(int analogPin, int digitalPin, int analogMax, int dryValue, int wetValue)
+    : _analogPin(analogPin), _digitalPin(digitalPin), _analogMax(analogMax), _dryValue(dryValue), _wetValue(wetValue) {}
 
 float SoilMoistureSensor::read() {
     int rawAnalog = analogRead(_analogPin);
-    // Convert raw analog value (0-4095 for ESP32) to percentage (0-100)
-    // Note: This assumes 4095 is dry and 0 is wet. Adjust if necessary.
-    float percentage = map(rawAnalog, 4095, 0, 0, 100);
+    int normalizedAnalog = constrain(rawAnalog, 0, _analogMax);
+    // Convert raw analog value to percentage using the configured dry/wet thresholds.
+    float percentage = map(normalizedAnalog, _dryValue, _wetValue, 0, 100);
     return constrain(percentage, 0.0, 100.0);
 }
 
