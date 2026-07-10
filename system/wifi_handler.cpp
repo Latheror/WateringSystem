@@ -12,7 +12,7 @@
  * @param ssid     WiFi SSID (network name)
  * @param password WiFi password
  */
-void connectToWiFi(const char* ssid, const char* password) {
+bool connectToWiFi(const char* ssid, const char* password) {
     WiFi.begin(ssid, password);
     Serial.print("Connecting to WiFi");
     int retries = 0;
@@ -21,11 +21,13 @@ void connectToWiFi(const char* ssid, const char* password) {
         Serial.print(".");
         retries++;
     }
-    if (WiFi.status() == WL_CONNECTED) {
+    bool connected = WiFi.status() == WL_CONNECTED;
+    if (connected) {
         Serial.println("\nWiFi connected!");
         Serial.print("IP address: ");
         Serial.println(WiFi.localIP());
     } else {
         Serial.println("\nFailed to connect to WiFi");
     }
+    return connected;
 }

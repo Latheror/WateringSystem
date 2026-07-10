@@ -7,6 +7,7 @@
 #include "webapp.h"
 #include "soil_moisture_sensor.h"
 #include "voltage_sensor.h"
+#include "led.h"
 
 WebServer server(80);
 
@@ -42,7 +43,10 @@ void setup() {
 
     digitalWrite(RELAY_PIN, RELAY_OFF);
 
-    connectToWiFi(WIFI_SSID, WIFI_PASS);
+    initLeds();
+
+    bool wifiOk = connectToWiFi(WIFI_SSID, WIFI_PASS);
+    setWifiLed(wifiOk);
 
     initWebApp();
 
@@ -104,6 +108,8 @@ void loop() {
     // =========================
     setPumpState(shouldWater);
     pumpActive = shouldWater;
+
+    setPumpLed(pumpActive);
 
     Serial.println(shouldWater ? "Relay: ON" : "Relay: OFF");
 

@@ -11,15 +11,16 @@
  */
 
 /**
- * @brief Connects to a WiFi network and prints status to Serial.
+ * @brief Connects to a WiFi network.
  *
- * This function attempts to connect to the specified WiFi network.
- * It prints progress and result to the Serial monitor.
+ * Attempts to connect to the specified WiFi network, printing
+ * progress to Serial. The WiFi LED is also updated accordingly.
  *
  * @param ssid     WiFi SSID (network name)
  * @param password WiFi password
+ * @return true if connected successfully, false otherwise
  */
-void connectToWiFi(const char* ssid, const char* password);
+bool connectToWiFi(const char* ssid, const char* password);
 
 /**
  * @brief Web server instance.

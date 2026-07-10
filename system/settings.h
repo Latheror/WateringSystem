@@ -31,6 +31,11 @@
 // Set to 1 if the relay module is active LOW (common modules), 0 if active HIGH
 #define RELAY_ACTIVE_LOW 1
 
+// LED status indicator pins
+#define LED_PIN_WIFI_CONNECTED 5
+#define LED_PIN_PUMP_ACTIVE 6
+#define LED_PIN_BATTERY_LOW 7
+
 #if RELAY_ACTIVE_LOW
 #define RELAY_ON LOW
 #define RELAY_OFF HIGH
