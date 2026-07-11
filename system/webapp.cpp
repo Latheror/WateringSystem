@@ -13,9 +13,7 @@ extern void onManualWateringRequest();
 // =========================
 // Global sensor + values
 // =========================
-SoilMoistureSensor soilSensor(
-    SOIL_MOISTURE_SENSOR_ANALOG_PIN,
-    SOIL_MOISTURE_SENSOR_DIGITAL_PIN);
+SoilMoistureSensor soilSensor(SOIL_MOISTURE_SENSOR_ANALOG_PIN);
 
 float solarVoltage = 0.0;
 float batteryVoltage = 0.0;

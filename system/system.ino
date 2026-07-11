@@ -8,6 +8,7 @@
 #include "soil_moisture_sensor.h"
 #include "voltage_sensor.h"
 #include "led.h"
+#include "button.h"
 
 WebServer server(80);
 
@@ -41,7 +42,6 @@ void setup() {
     Serial.println("Start");
 
     pinMode(LED_BUILTIN, OUTPUT);
-    pinMode(SOIL_MOISTURE_SENSOR_DIGITAL_PIN, INPUT);
     pinMode(RELAY_PIN, OUTPUT);
     pinMode(SOLAR_VOLTAGE_PIN, INPUT);
     pinMode(BATTERY_LEVEL_PIN, INPUT);
@@ -49,6 +49,7 @@ void setup() {
     digitalWrite(RELAY_PIN, RELAY_OFF);
 
     initLeds();
+    initButton();
 
     bool wifiOk = wifiReconnector.begin();
     setWifiLed(wifiOk);
@@ -74,7 +75,7 @@ void loop() {
     // =========================
     // SENSOR READS
     // =========================
-    SoilMoistureSensor soilSensor(SOIL_MOISTURE_SENSOR_ANALOG_PIN, SOIL_MOISTURE_SENSOR_DIGITAL_PIN);
+    SoilMoistureSensor soilSensor(SOIL_MOISTURE_SENSOR_ANALOG_PIN);
     VoltageSensor solarSensor(SOLAR_VOLTAGE_PIN);
     VoltageSensor batterySensor(BATTERY_LEVEL_PIN);
 
@@ -131,10 +132,10 @@ void loop() {
     batteryVoltage = batteryVoltageReading;
 
     // =========================
-    // STATUS LED
+    // PUSH BUTTON → STATUS LED
     // =========================
-    digitalWrite(LED_BUILTIN, HIGH);
-    delay(200);
-    digitalWrite(LED_BUILTIN, LOW);
-    delay(800);
+    // When the push button (GPIO 0 → VCC) is held, the built-in LED turns ON.
+    // This is temporary — replace with the intended button action later.
+    digitalWrite(LED_BUILTIN, isButtonPressed() ? HIGH : LOW);
+    
 }

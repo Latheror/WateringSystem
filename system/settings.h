@@ -13,11 +13,16 @@
  */
 #define LED_BUILTIN 8
 
+/**
+ * @brief GPIO pin connected to the push button.
+ *        Button connects VCC to this pin. Internal pulldown enabled;
+ *        add an external 10kΩ pulldown if unstable.
+ */
+#define BUTTON_PIN 0
+
 // Soil moisture sensor pins
 // Analog pin connected to sensor analog output (AO)
-#define SOIL_MOISTURE_SENSOR_ANALOG_PIN 0
-// Digital pin connected to sensor digital output (DO)
-#define SOIL_MOISTURE_SENSOR_DIGITAL_PIN 1
+#define SOIL_MOISTURE_SENSOR_ANALOG_PIN 1
 
 // Solar panel and battery pins
 // Analog pin for solar panel voltage

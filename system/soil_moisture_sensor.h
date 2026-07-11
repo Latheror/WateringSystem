@@ -24,7 +24,7 @@ public:
      * @param dryValue Raw value corresponding to dry soil.
      * @param wetValue Raw value corresponding to wet soil.
      */
-    SoilMoistureSensor(int analogPin, int digitalPin, int analogMax = 4095, int dryValue = 4095, int wetValue = 0);
+    SoilMoistureSensor(int analogPin, int digitalPin = -1, int analogMax = 4095, int dryValue = 4095, int wetValue = 0);
 
     /**
      * @brief Reads the soil moisture level.
