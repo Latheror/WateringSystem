@@ -137,5 +137,10 @@ void loop() {
     // When the push button (GPIO 0 → VCC) is held, the built-in LED turns ON.
     // This is temporary — replace with the intended button action later.
     digitalWrite(LED_BUILTIN, isButtonPressed() ? HIGH : LOW);
+
+    // =========================
+    // LOOP DELAY
+    // =========================
+    delay(LOOP_DELAY_MS);
     
 }

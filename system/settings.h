@@ -69,4 +69,9 @@
  */
 #define WIFI_STARTUP_RETRY_PERIOD   30000  // 30 seconds
 
+/**
+ * @brief Delay (ms) at the end of each loop() iteration.
+ */
+#define LOOP_DELAY_MS               500
+
 #endif // SETTINGS_H
