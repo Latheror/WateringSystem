@@ -136,7 +136,11 @@ void loop() {
     // =========================
     // When the push button (GPIO 0 → VCC) is held, the built-in LED turns ON.
     // This is temporary — replace with the intended button action later.
-    digitalWrite(LED_BUILTIN, isButtonPressed() ? HIGH : LOW);
+    bool buttonPressed = isButtonPressed();
+    if(buttonPressed){
+        Serial.println("Button pressed");
+    }
+    digitalWrite(LED_BUILTIN,  buttonPressed ? HIGH : LOW);
 
     // =========================
     // LOOP DELAY

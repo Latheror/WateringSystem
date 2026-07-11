@@ -72,6 +72,6 @@
 /**
  * @brief Delay (ms) at the end of each loop() iteration.
  */
-#define LOOP_DELAY_MS               500
+#define LOOP_DELAY_MS               100
 
 #endif // SETTINGS_H
