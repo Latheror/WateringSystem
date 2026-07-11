@@ -37,9 +37,9 @@
 #define RELAY_ACTIVE_LOW 1
 
 // LED status indicator pins
-#define LED_PIN_WIFI_CONNECTED 5
-#define LED_PIN_PUMP_ACTIVE 6
-#define LED_PIN_BATTERY_LOW 7
+#define LED_PIN_WIFI_CONNECTED 8
+#define LED_PIN_PUMP_ACTIVE 7
+#define LED_PIN_BATTERY_LOW 6
 
 #if RELAY_ACTIVE_LOW
 #define RELAY_ON LOW
@@ -62,12 +62,6 @@
  * @brief Maximum delay (ms) between WiFi reconnection attempts.
  */
 #define WIFI_RETRY_MAX_DELAY_MS    600000  // 10 minutes
-
-/**
- * @brief If WiFi fails to connect at startup, total time (ms) to keep retrying
- *        in setup() before falling through. After this, the loop() handles retries.
- */
-#define WIFI_STARTUP_RETRY_PERIOD   30000  // 30 seconds
 
 /**
  * @brief Delay (ms) at the end of each loop() iteration.

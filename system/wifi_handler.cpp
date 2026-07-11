@@ -51,21 +51,9 @@ bool WiFiReconnector::begin() {
         _wasConnected = true;
         _currentDelayMs = WIFI_RETRY_BASE_DELAY_MS;
     } else {
-        // Keep retrying during startup for WIFI_STARTUP_RETRY_PERIOD
-        unsigned long start = millis();
-        while (!ok && (millis() - start < WIFI_STARTUP_RETRY_PERIOD)) {
-            delay(WIFI_RETRY_BASE_DELAY_MS);
-            Serial.print("[WiFiReconnector] Startup retry...");
-            ok = connectToWiFi(_ssid, _password);
-        }
-        if (ok) {
-            _wasConnected = true;
-            _currentDelayMs = WIFI_RETRY_BASE_DELAY_MS;
-        } else {
-            _wasConnected = false;
-            _lastAttemptMs = millis();
-            Serial.println("[WiFiReconnector] Startup failed — will retry in loop()");
-        }
+        _wasConnected = false;
+        _lastAttemptMs = millis();
+        Serial.println("[WiFiReconnector] Failed — retries will be handled in loop()");
     }
     return ok;
 }

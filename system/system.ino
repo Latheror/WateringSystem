@@ -68,7 +68,9 @@ void loop() {
     // WIFI MAINTENANCE
     // =========================
     wifiReconnector.handle();
-    setWifiLed(wifiReconnector.isConnected());
+    bool wifiConnected = wifiReconnector.isConnected();
+    Serial.println(wifiConnected ? "wifiConnected: true" : "wifiConnected: false");
+    setWifiLed(wifiConnected);
 
     server.handleClient();
 
@@ -140,7 +142,6 @@ void loop() {
     if(buttonPressed){
         Serial.println("Button pressed");
     }
-    digitalWrite(LED_BUILTIN,  buttonPressed ? HIGH : LOW);
 
     // =========================
     // LOOP DELAY

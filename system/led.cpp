@@ -19,19 +19,19 @@ void initLeds() {
  * @brief Set the state of the WiFi connected LED.
  */
 void setWifiLed(bool connected) {
-    digitalWrite(LED_PIN_WIFI_CONNECTED, connected ? HIGH : LOW);
+    digitalWrite(LED_PIN_WIFI_CONNECTED, connected ? LOW : HIGH);
 }
 
 /**
  * @brief Set the state of the pump active LED.
  */
 void setPumpLed(bool active) {
-    digitalWrite(LED_PIN_PUMP_ACTIVE, active ? HIGH : LOW);
+    digitalWrite(LED_PIN_PUMP_ACTIVE, active ? LOW : HIGH);
 }
 
 /**
  * @brief Set the state of the battery low LED.
  */
 void setBatteryLowLed(bool low) {
-    digitalWrite(LED_PIN_BATTERY_LOW, low ? HIGH : LOW);
+    digitalWrite(LED_PIN_BATTERY_LOW, low ? LOW : HIGH);
 }
