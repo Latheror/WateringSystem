@@ -16,7 +16,7 @@ public:
      * @param analogMax Maximum ADC reading (4095 for ESP32).
      * @param scaleFactor Optional scale factor for voltage divider.
      */
-    VoltageSensor(int analogPin, float analogReference = 3.3, int analogMax = 4095, float scaleFactor = 1.0);
+    explicit VoltageSensor(int analogPin, float analogReference = 3.3, int analogMax = 4095, float scaleFactor = 1.0);
 
     float read() override;
     String getStatus() override;

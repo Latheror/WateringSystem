@@ -27,4 +27,60 @@ bool connectToWiFi(const char* ssid, const char* password);
  */
 extern WebServer server;
 
+/**
+ * @brief Automatic WiFi reconnector with exponential backoff.
+ *
+ * Handles reconnection transparently: call begin() once in setup(),
+ * then call handle() regularly from loop(). When WiFi drops, it
+ * automatically retries with exponentially increasing delays
+ * (capped at WIFI_RETRY_MAX_DELAY_MS). On successful reconnect the
+ * backoff resets to the base delay.
+ */
+class WiFiReconnector {
+public:
+    /**
+     * @brief Construct a WiFiReconnector.
+     * @param ssid     WiFi SSID
+     * @param password WiFi password
+     */
+    WiFiReconnector(const char* ssid, const char* password);
+
+    /**
+     * @brief Attempt initial connection with a short retry loop.
+     *
+     * Blocks for up to WIFI_STARTUP_RETRY_PERIOD ms, retrying
+     * every WIFI_RETRY_BASE_DELAY_MS. Call once in setup().
+     *
+     * @return true if connected, false otherwise.
+     */
+    bool begin();
+
+    /**
+     * @brief Periodic maintenance — call from loop().
+     *
+     * Checks WiFi status. If disconnected and enough time has
+     * elapsed since the last attempt, triggers a reconnection.
+     * On success the backoff resets; on failure the delay doubles.
+     */
+    void handle();
+
+    /**
+     * @brief Check current WiFi connectivity.
+     * @return true if WiFi is connected.
+     */
+    static bool isConnected();
+
+    /**
+     * @brief Manually reset the backoff timer (e.g. after user action).
+     */
+    void reset();
+
+private:
+    const char* _ssid;
+    const char* _password;
+    unsigned long _lastAttemptMs;
+    unsigned long _currentDelayMs;
+    bool _wasConnected;
+};
+
 #endif // WIFI_HANDLER_H

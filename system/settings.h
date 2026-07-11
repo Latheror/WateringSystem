@@ -44,4 +44,24 @@
 #define RELAY_OFF LOW
 #endif
 
+// =========================
+// WiFi AUTO-RECONNECT CONFIGURATION
+// =========================
+/**
+ * @brief Base delay (ms) before the first WiFi reconnection attempt.
+ *        Each subsequent retry doubles this value until WIFI_RETRY_MAX_DELAY_MS.
+ */
+#define WIFI_RETRY_BASE_DELAY_MS    10000  // 10 seconds
+
+/**
+ * @brief Maximum delay (ms) between WiFi reconnection attempts.
+ */
+#define WIFI_RETRY_MAX_DELAY_MS    600000  // 10 minutes
+
+/**
+ * @brief If WiFi fails to connect at startup, total time (ms) to keep retrying
+ *        in setup() before falling through. After this, the loop() handles retries.
+ */
+#define WIFI_STARTUP_RETRY_PERIOD   30000  // 30 seconds
+
 #endif // SETTINGS_H

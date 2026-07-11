@@ -12,6 +12,11 @@
 WebServer server(80);
 
 // =========================
+// WIFI RECONNECTOR (GLOBAL)
+// =========================
+WiFiReconnector wifiReconnector(WIFI_SSID, WIFI_PASS);
+
+// =========================
 // SYSTEM STATE (OWNED HERE)
 // =========================
 bool manualMode = false;
@@ -45,7 +50,7 @@ void setup() {
 
     initLeds();
 
-    bool wifiOk = connectToWiFi(WIFI_SSID, WIFI_PASS);
+    bool wifiOk = wifiReconnector.begin();
     setWifiLed(wifiOk);
 
     initWebApp();
@@ -57,6 +62,12 @@ void setup() {
 // LOOP (SYSTEM BRAIN)
 // =========================
 void loop() {
+
+    // =========================
+    // WIFI MAINTENANCE
+    // =========================
+    wifiReconnector.handle();
+    setWifiLed(wifiReconnector.isConnected());
 
     server.handleClient();
 
