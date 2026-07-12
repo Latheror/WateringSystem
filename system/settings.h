@@ -37,7 +37,7 @@
 // LED status indicator pins
 #define LED_PIN_WIFI_CONNECTED 8
 #define LED_PIN_PUMP_ACTIVE 7
-#define LED_PIN_BATTERY_LOW 6
+#define LED_PIN_BATTERY_LOW 5
 
 
 // =========================
