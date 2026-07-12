@@ -33,21 +33,12 @@
 // Relay configuration
 // GPIO pin controlling the relay module (pump/valve)
 #define RELAY_PIN 2
-// Set to 1 if the relay module is active LOW (common modules), 0 if active HIGH
-#define RELAY_ACTIVE_LOW 1
 
 // LED status indicator pins
 #define LED_PIN_WIFI_CONNECTED 8
 #define LED_PIN_PUMP_ACTIVE 7
 #define LED_PIN_BATTERY_LOW 6
 
-#if RELAY_ACTIVE_LOW
-#define RELAY_ON LOW
-#define RELAY_OFF HIGH
-#else
-#define RELAY_ON HIGH
-#define RELAY_OFF LOW
-#endif
 
 // =========================
 // WiFi AUTO-RECONNECT CONFIGURATION

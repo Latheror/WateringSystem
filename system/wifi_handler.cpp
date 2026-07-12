@@ -74,13 +74,13 @@ void WiFiReconnector::handle() {
 
     // Not connected
     if (_wasConnected) {
-        // Just dropped — log once
         Serial.println("[WiFiReconnector] WiFi connection lost");
         _wasConnected = false;
         _lastAttemptMs = millis();
-        // Attempt immediate reconnect
-        Serial.println("[WiFiReconnector] Attempting immediate reconnect...");
-        WiFi.reconnect();
+
+        // Cleanly tear down before reconnecting — don't call reconnect()
+        // directly, it can race with the next begin().
+        WiFi.disconnect(false, false); // wifioff=false, eraseap=false
         return;
     }
 
@@ -90,9 +90,12 @@ void WiFiReconnector::handle() {
         Serial.print("[WiFiReconnector] Retrying connection (delay=");
         Serial.print(_currentDelayMs);
         Serial.println("ms)...");
+
+        // Ensure driver is fully idle before reconfiguring/connecting
+        WiFi.disconnect(false, false);
+        delay(100); // let the STA state machine settle
         WiFi.begin(_ssid, _password);
 
-        // Wait a few seconds to see if it connects
         int retries = 0;
         while (WiFi.status() != WL_CONNECTED && retries < 25) {
             delay(200);

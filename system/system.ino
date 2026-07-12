@@ -46,7 +46,7 @@ void setup() {
     pinMode(SOLAR_VOLTAGE_PIN, INPUT);
     pinMode(BATTERY_LEVEL_PIN, INPUT);
 
-    digitalWrite(RELAY_PIN, RELAY_OFF);
+    setPumpState(false);
 
     initLeds();
     initButton();
@@ -120,9 +120,10 @@ void loop() {
     // =========================
     // APPLY TO HARDWARE
     // =========================
+    Serial.println(shouldWater ? "shouldWater: TRUE" : "shouldWater: FALSE");
     setPumpState(shouldWater);
-    pumpActive = shouldWater;
 
+    pumpActive = shouldWater; 
     setPumpLed(pumpActive);
 
     Serial.println(shouldWater ? "Relay: ON" : "Relay: OFF");
