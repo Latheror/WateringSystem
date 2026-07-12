@@ -19,12 +19,12 @@ public:
     /**
      * @brief Constructor for SoilMoistureSensor.
      * @param analogPin The analog pin for the sensor.
-     * @param digitalPin The digital pin for the sensor.
+     * @param threshold The ADC threshold value; readings above = DRY, below = WET.
      * @param analogMax Maximum ADC reading for the board (4095 for ESP32).
      * @param dryValue Raw value corresponding to dry soil.
      * @param wetValue Raw value corresponding to wet soil.
      */
-    SoilMoistureSensor(int analogPin, int digitalPin = -1, int analogMax = 4095, int dryValue = 4095, int wetValue = 0);
+    SoilMoistureSensor(int analogPin, int threshold = 2048, int analogMax = 4095, int dryValue = 4095, int wetValue = 0);
 
     /**
      * @brief Reads the soil moisture level.
@@ -46,10 +46,11 @@ public:
 
 private:
     int _analogPin;
-    int _digitalPin;
+    int _threshold;
     int _analogMax;
     int _dryValue;
     int _wetValue;
+    SoilStatus _status;
 };
 
 #endif // SOIL_MOISTURE_SENSOR_H

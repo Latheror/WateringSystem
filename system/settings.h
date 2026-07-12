@@ -24,6 +24,10 @@
 // Analog pin connected to sensor analog output (AO)
 #define SOIL_MOISTURE_SENSOR_ANALOG_PIN 1
 
+// Soil moisture threshold (0-4095 ADC range)
+// Values ABOVE this threshold = DRY, values BELOW = WET
+#define SOIL_MOISTURE_THRESHOLD 2048
+
 // Solar panel and battery pins
 // Analog pin for solar panel voltage
 #define SOLAR_VOLTAGE_PIN 3
