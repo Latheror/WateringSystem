@@ -8,6 +8,10 @@
 
 #include "settings_user.h"
 
+// =========================
+// GPIO PIN ASSIGNMENTS
+// =========================
+
 /**
  * @brief GPIO pin number for the onboard LED (ESP32C3).
  */
@@ -20,22 +24,46 @@
  */
 #define BUTTON_PIN 0
 
-// Soil moisture sensor pins
-// Analog pin connected to sensor analog output (AO)
+/**
+ * @brief GPIO pin controlling the relay module (pump/valve).
+ */
+#define RELAY_PIN 2
+
+
+// =========================
+// SOIL MOISTURE SENSOR CONFIGURATION
+// =========================
+
+/**
+ * @brief Analog pin connected to the soil moisture sensor's analog output (AO).
+ */
 #define SOIL_MOISTURE_SENSOR_ANALOG_PIN 1
 
-// Soil moisture threshold (0-4095 ADC range)
-// Values ABOVE this threshold = DRY, values BELOW = WET
+/**
+ * @brief Soil moisture threshold (0-4095 ADC range).
+ *        Values ABOVE this threshold = DRY, values BELOW = WET.
+ */
 #define SOIL_MOISTURE_THRESHOLD 2048
 
-// Soil moisture floating threshold (0-4095 ADC range)
-// Values BELOW this threshold = FLOATING (sensor not in soil / unreliable reading)
+/**
+ * @brief Soil moisture floating threshold (0-4095 ADC range).
+ *        Values BELOW this threshold = FLOATING (sensor not in soil / unreliable reading).
+ */
 #define SOIL_MOISTURE_FLOATING_THRESHOLD 100
 
-// Solar panel and battery pins
-// Analog pin for solar panel voltage
+
+// =========================
+// SOLAR PANEL & BATTERY CONFIGURATION
+// =========================
+
+/**
+ * @brief Analog pin for solar panel voltage.
+ */
 #define SOLAR_VOLTAGE_PIN 3
-// Analog pin for battery level
+
+/**
+ * @brief Analog pin for battery level.
+ */
 #define BATTERY_LEVEL_PIN 4
 
 /**
@@ -45,20 +73,21 @@
 #define BATTERY_DIVIDER_R1 470000.0
 #define BATTERY_DIVIDER_R2 470000.0
 
-// Relay configuration
-// GPIO pin controlling the relay module (pump/valve)
-#define RELAY_PIN 2
 
-// LED status indicator pins
+// =========================
+// LED STATUS INDICATOR PINS
+// =========================
+
 #define LED_PIN_WIFI_CONNECTED 8
-#define LED_PIN_PUMP_ACTIVE 7
-#define LED_PIN_BATTERY_LOW 5
-#define LED_PIN_AUTO_MODE 6
+#define LED_PIN_PUMP_ACTIVE    7
+#define LED_PIN_BATTERY_LOW    5
+#define LED_PIN_AUTO_MODE      6
 
 
 // =========================
-// WiFi AUTO-RECONNECT CONFIGURATION
+// WIFI AUTO-RECONNECT CONFIGURATION
 // =========================
+
 /**
  * @brief Base delay (ms) before the first WiFi reconnection attempt.
  *        Each subsequent retry doubles this value until WIFI_RETRY_MAX_DELAY_MS.
@@ -70,6 +99,11 @@
  */
 #define WIFI_RETRY_MAX_DELAY_MS    600000  // 10 minutes
 
+
+// =========================
+// AUTOMATIC WATERING CONFIGURATION
+// =========================
+
 /**
  * @brief Duration (ms) the pump remains ON during automatic watering.
  */
@@ -80,10 +114,14 @@
  */
 #define AUTO_WATERING_INTERVAL_MS    60000  // 1 minute
 
+
+// =========================
+// MAIN LOOP CONFIGURATION
+// =========================
+
 /**
  * @brief Delay (ms) at the end of each loop() iteration.
  */
-#define LOOP_DELAY_MS               100
+#define LOOP_DELAY_MS    100
 
 #endif // SETTINGS_H
-
