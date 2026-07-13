@@ -38,6 +38,13 @@
 // Analog pin for battery level
 #define BATTERY_LEVEL_PIN 4
 
+/**
+ * @brief Resistor values for the battery voltage divider.
+ *        Two 470k resistors are used.
+ */
+#define BATTERY_DIVIDER_R1 470000.0
+#define BATTERY_DIVIDER_R2 470000.0
+
 // Relay configuration
 // GPIO pin controlling the relay module (pump/valve)
 #define RELAY_PIN 2
@@ -63,8 +70,19 @@
 #define WIFI_RETRY_MAX_DELAY_MS    600000  // 10 minutes
 
 /**
+ * @brief Duration (ms) the pump remains ON during automatic watering.
+ */
+#define AUTO_WATERING_DURATION_MS    10000  // 10 seconds
+
+/**
+ * @brief Interval (ms) between automatic watering cycles.
+ */
+#define AUTO_WATERING_INTERVAL_MS    60000  // 1 minute
+
+/**
  * @brief Delay (ms) at the end of each loop() iteration.
  */
 #define LOOP_DELAY_MS               100
 
 #endif // SETTINGS_H
+

@@ -20,18 +20,22 @@ WiFiReconnector wifiReconnector(WIFI_SSID, WIFI_PASS);
 // =========================
 // SYSTEM STATE (OWNED HERE)
 // =========================
-bool manualMode = false;
-unsigned long wateringStartTime = 0;
+// NOTE: manual and automatic watering share a single timer/budget
+// so the pump can only be ON for AUTO_WATERING_DURATION_MS every
+// AUTO_WATERING_INTERVAL_MS, regardless of what triggered it.
+bool manualRequestPending = false;   // set by web event, consumed in loop()
+bool manualMode = false;             // reporting only: was the current window manually triggered?
 bool pumpActive = false;
+
+bool wateringActive = false;         // true while pump is inside its ON window (manual or auto)
+unsigned long lastWateringStartTime = (unsigned long)(0 - AUTO_WATERING_INTERVAL_MS);
 
 // =========================
 // EVENT HANDLER (FROM WEB)
 // =========================
 void onManualWateringRequest() {
-    manualMode = true;
-    wateringStartTime = millis();
-
-    Serial.println("Manual watering triggered (web event)");
+    manualRequestPending = true;
+    Serial.println("Manual watering requested (web event)");
 }
 
 // =========================
@@ -68,10 +72,10 @@ void loop() {
     // BUTTON
     // =========================
     bool buttonPressed = isButtonPressed();
-        if(buttonPressed){
+    if (buttonPressed) {
         Serial.println("Button pressed");
     }
-    
+
     // =========================
     // WIFI MAINTENANCE
     // =========================
@@ -87,7 +91,7 @@ void loop() {
     // =========================
     SoilMoistureSensor soilSensor(SOIL_MOISTURE_SENSOR_ANALOG_PIN, SOIL_MOISTURE_FLOATING_THRESHOLD, SOIL_MOISTURE_THRESHOLD);
     VoltageSensor solarSensor(SOLAR_VOLTAGE_PIN);
-    VoltageSensor batterySensor(BATTERY_LEVEL_PIN);
+    VoltageSensor batterySensor(BATTERY_LEVEL_PIN, 3.3f, 4095, (BATTERY_DIVIDER_R1 + BATTERY_DIVIDER_R2) / BATTERY_DIVIDER_R1);
 
     float soilMoisture = soilSensor.read();
     SoilStatus soilStatus = soilSensor.getSoilStatus();
@@ -109,23 +113,40 @@ void loop() {
     }
 
     // =========================
-    // MANUAL MODE TIMEOUT
-    // =========================
-    if (manualMode && (millis() - wateringStartTime >= 10000)) {
-        manualMode = false;
-        Serial.println("Manual watering complete");
-    }
-
-    // =========================
     // DECISION LOGIC (ONLY HERE)
     // =========================
-    bool shouldWater;
+    unsigned long currentTime = millis();
+    bool wantsWater = manualRequestPending || (soilStatus == SoilStatus::DRY);
 
-    if (manualMode) {
-        shouldWater = true;
-    } else {
-        // Use the digital status from the sensor object
-        shouldWater = (soilStatus == SoilStatus::DRY);
+    // Only allow a NEW watering window to start if the shared budget
+    // window (AUTO_WATERING_INTERVAL_MS) has elapsed since the last one.
+    if (!wateringActive && wantsWater &&
+        (currentTime - lastWateringStartTime >= AUTO_WATERING_INTERVAL_MS)) {
+        wateringActive = true;
+        lastWateringStartTime = currentTime;
+        manualMode = manualRequestPending; // just for reporting which triggered it
+        manualRequestPending = false;      // consume the request either way
+        Serial.println(manualMode ? "Manual watering started" : "Automatic watering started");
+    } else if (manualRequestPending && wateringActive) {
+        // Already inside a watering window (budget in use) - drop the request
+        manualRequestPending = false;
+        Serial.println("Manual request ignored: watering budget already in use");
+    } else if (manualRequestPending) {
+        // Wanted to water manually but budget window hasn't elapsed yet - drop it
+        manualRequestPending = false;
+        Serial.println("Manual request ignored: watering budget not yet available");
+    }
+
+    bool shouldWater = false;
+    if (wateringActive) {
+        if (currentTime - lastWateringStartTime < AUTO_WATERING_DURATION_MS) {
+            shouldWater = true;
+        } else {
+            shouldWater = false;
+            wateringActive = false;
+            manualMode = false;
+            Serial.println("Watering window finished");
+        }
     }
 
     // =========================
@@ -134,7 +155,7 @@ void loop() {
     Serial.println(shouldWater ? "shouldWater: TRUE" : "shouldWater: FALSE");
     setPumpState(shouldWater);
 
-    pumpActive = shouldWater; 
+    pumpActive = shouldWater;
     setPumpLed(pumpActive && buttonPressed);
 
     Serial.println(shouldWater ? "Relay: ON" : "Relay: OFF");
@@ -149,5 +170,5 @@ void loop() {
     // LOOP DELAY
     // =========================
     delay(LOOP_DELAY_MS);
-    
+
 }
