@@ -93,6 +93,7 @@ void loop() {
                       : "wifiConnected: false");
 
     setWifiLed(wifiConnected && buttonPressed);
+    setAutoModeLed(autoMode && buttonPressed);
 
     server.handleClient();
 

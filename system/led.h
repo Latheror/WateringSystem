@@ -29,4 +29,10 @@ void setPumpLed(bool active);
  */
 void setBatteryLowLed(bool low);
 
+/**
+ * @brief Set the state of the auto mode LED.
+ * @param auto_mode True to turn ON (auto mode active), false to turn OFF.
+ */
+void setAutoModeLed(bool auto_mode);
+
 #endif // LED_H

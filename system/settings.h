@@ -53,6 +53,7 @@
 #define LED_PIN_WIFI_CONNECTED 8
 #define LED_PIN_PUMP_ACTIVE 7
 #define LED_PIN_BATTERY_LOW 5
+#define LED_PIN_AUTO_MODE 6
 
 
 // =========================
