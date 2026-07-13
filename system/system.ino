@@ -65,12 +65,20 @@ void setup() {
 void loop() {
 
     // =========================
+    // BUTTON
+    // =========================
+    bool buttonPressed = isButtonPressed();
+        if(buttonPressed){
+        Serial.println("Button pressed");
+    }
+    
+    // =========================
     // WIFI MAINTENANCE
     // =========================
     wifiReconnector.handle();
     bool wifiConnected = wifiReconnector.isConnected();
     Serial.println(wifiConnected ? "wifiConnected: true" : "wifiConnected: false");
-    setWifiLed(wifiConnected);
+    setWifiLed(wifiConnected && buttonPressed);
 
     server.handleClient();
 
@@ -85,6 +93,7 @@ void loop() {
     SoilStatus soilStatus = soilSensor.getSoilStatus();
     float solarVoltageReading = solarSensor.read();
     float batteryVoltageReading = batterySensor.read();
+    setBatteryLowLed(false /*&& buttonPressed*/);
 
     Serial.print("Soil Moisture: ");
     Serial.print(soilMoisture);
@@ -126,7 +135,7 @@ void loop() {
     setPumpState(shouldWater);
 
     pumpActive = shouldWater; 
-    setPumpLed(pumpActive);
+    setPumpLed(pumpActive && buttonPressed);
 
     Serial.println(shouldWater ? "Relay: ON" : "Relay: OFF");
 
@@ -135,16 +144,6 @@ void loop() {
     // =========================
     solarVoltage = solarVoltageReading;
     batteryVoltage = batteryVoltageReading;
-
-    // =========================
-    // PUSH BUTTON → STATUS LED
-    // =========================
-    // When the push button (GPIO 0 → VCC) is held, the built-in LED turns ON.
-    // This is temporary — replace with the intended button action later.
-    bool buttonPressed = isButtonPressed();
-    if(buttonPressed){
-        Serial.println("Button pressed");
-    }
 
     // =========================
     // LOOP DELAY
