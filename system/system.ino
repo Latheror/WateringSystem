@@ -77,7 +77,7 @@ void loop() {
     // =========================
     // SENSOR READS
     // =========================
-    SoilMoistureSensor soilSensor(SOIL_MOISTURE_SENSOR_ANALOG_PIN);
+    SoilMoistureSensor soilSensor(SOIL_MOISTURE_SENSOR_ANALOG_PIN, SOIL_MOISTURE_FLOATING_THRESHOLD, SOIL_MOISTURE_THRESHOLD);
     VoltageSensor solarSensor(SOLAR_VOLTAGE_PIN);
     VoltageSensor batterySensor(BATTERY_LEVEL_PIN);
 
@@ -93,6 +93,8 @@ void loop() {
         Serial.println("DRY");
     } else if (soilStatus == SoilStatus::WET) {
         Serial.println("WET");
+    } else if (soilStatus == SoilStatus::FLOATING) {
+        Serial.println("FLOATING");
     } else {
         Serial.println("UNKNOWN");
     }

@@ -19,7 +19,6 @@ public:
     explicit VoltageSensor(int analogPin, float analogReference = 3.3, int analogMax = 4095, float scaleFactor = 1.0);
 
     float read() override;
-    String getStatus() override;
 
 private:
     int _analogPin;

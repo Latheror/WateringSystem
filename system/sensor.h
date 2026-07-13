@@ -15,11 +15,6 @@ public:
      * @return The sensor value (e.g., moisture level, voltage).
      */
     virtual float read() = 0;
-    /**
-     * @brief Returns a human-readable status or description of the sensor.
-     * @return A string describing the sensor's current state.
-     */
-    virtual String getStatus() = 0;
 };
 
 #endif // SENSOR_H

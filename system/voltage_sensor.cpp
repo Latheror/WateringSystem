@@ -9,7 +9,3 @@ float VoltageSensor::read() {
     float voltage = (rawAnalog * _analogReference / static_cast<float>(_analogMax)) * _scaleFactor;
     return voltage;
 }
-
-String VoltageSensor::getStatus() {
-    return String(read(), 2) + " V";
-}
