@@ -8,6 +8,7 @@
 // =========================
 extern WebServer server;
 extern bool pumpActive;
+extern bool autoMode;
 extern void onManualWateringRequest();
 
 // =========================
@@ -96,25 +97,36 @@ h1 {
 .battery { border-left: 6px solid #f1c40f; }
 .pump { border-left: 6px solid #3498db; }
 
-button {
-    margin-top: 20px;
-    width: 100%;
-    padding: 14px;
-    font-size: 1.1em;
+.card-btn {
     border: none;
-    border-radius: 40px;
-    background: #3498db;
-    color: white;
+    cursor: pointer;
+    font-family: inherit;
+    color: #333;
+    width: 100%;
+    transition: transform 0.1s ease;
 }
 
-button:active {
-    transform: scale(0.98);
+.card-btn:active {
+    transform: scale(0.97);
+}
+
+.auto { border-left: 6px solid #9b59b6; }
+
+.water {
+    border-left: 6px solid #3498db;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 </style>
 
 <script>
 async function triggerWatering() {
     await fetch('/water');
+}
+
+async function toggleAutoMode() {
+    await fetch('/toggleAutoMode');
 }
 </script>
 
@@ -135,12 +147,12 @@ async function triggerWatering() {
 
 <div class="card solar">
 <h2>Solar Voltage</h2>
-<div class="value">%SOLAR% V</div>
+<div class="value">☀️ %SOLAR% V</div>
 </div>
 
 <div class="card battery">
 <h2>Battery Voltage</h2>
-<div class="value">%BATTERY% V</div>
+<div class="value">🔋 %BATTERY% V</div>
 </div>
 
 <div class="card pump">
@@ -148,11 +160,17 @@ async function triggerWatering() {
 <div class="value">%PUMP%</div>
 </div>
 
-</div>
-
-<button onclick="triggerWatering()">
-💧 Manual Watering (10s)
+<button class="card auto card-btn" onclick="toggleAutoMode()">
+<h2>Auto Mode</h2>
+<div class="value">%AUTO%</div>
 </button>
+
+<button class="card water card-btn" onclick="triggerWatering()">
+<h2>Manual Watering</h2>
+<div class="value">💧 10s</div>
+</button>
+
+</div>
 
 </div>
 
@@ -175,6 +193,7 @@ static String renderPage()
     page.replace("%SOLAR%", String(solarVoltage, 2));
     page.replace("%BATTERY%", String(batteryVoltage, 2));
     page.replace("%PUMP%", pumpActive ? "🟢 ON" : "⚪ OFF");
+    page.replace("%AUTO%", autoMode ? "✅ ON" : "❌ OFF");
 
     return page;
 }
@@ -186,10 +205,12 @@ void initWebApp()
 {
     server.on("/", handleRoot);
     server.on("/water", handleManualWatering);
+    server.on("/toggleAutoMode", handleToggleAutoMode);
 
     server.begin();
     Serial.println("Web server started");
 }
+
 
 // =========================
 // Routes
@@ -202,5 +223,11 @@ void handleRoot()
 void handleManualWatering()
 {
     onManualWateringRequest();
+    server.send(200, "text/plain", "OK");
+}
+
+void handleToggleAutoMode()
+{
+    autoMode = !autoMode;
     server.send(200, "text/plain", "OK");
 }

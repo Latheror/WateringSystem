@@ -20,6 +20,7 @@ extern WebServer server;
 extern float solarVoltage;
 extern float batteryVoltage;
 extern bool pumpActive;
+extern bool autoMode;
 
 /**
  * @brief Handle root page request.
@@ -31,6 +32,12 @@ void handleRoot();
  * Sends event to system.ino
  */
 void handleManualWatering();
+
+/**
+ * @brief Handle auto mode toggle request.
+ * Sends event to system.ino
+ */
+void handleToggleAutoMode();
 
 /**
  * @brief Handle manual watering request from web.

@@ -26,6 +26,7 @@ WiFiReconnector wifiReconnector(WIFI_SSID, WIFI_PASS);
 bool manualRequestPending = false;   // set by web event, consumed in loop()
 bool manualMode = false;             // reporting only: was the current window manually triggered?
 bool pumpActive = false;
+bool autoMode = true;
 
 bool wateringActive = false;         // true while pump is inside its ON window (manual or auto)
 unsigned long lastWateringStartTime = (unsigned long)(0 - AUTO_WATERING_INTERVAL_MS);
