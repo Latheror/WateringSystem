@@ -167,7 +167,7 @@ async function toggleAutoMode() {
 
 <button class="card water card-btn" onclick="triggerWatering()">
 <h2>Manual Watering</h2>
-<div class="value">💧 10s</div>
+<div class="value">💧 10s (%REMAINING%)</div>
 </button>
 
 </div>
@@ -194,6 +194,7 @@ static String renderPage()
     page.replace("%BATTERY%", String(batteryVoltage, 2));
     page.replace("%PUMP%", pumpActive ? "🟢 ON" : "⚪ OFF");
     page.replace("%AUTO%", autoMode ? "✅ ON" : "❌ OFF");
+    page.replace("%REMAINING%", String(remainingWaitingTimeMs / 1000) + "s");
 
     return page;
 }

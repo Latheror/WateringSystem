@@ -21,6 +21,7 @@ extern float solarVoltage;
 extern float batteryVoltage;
 extern bool pumpActive;
 extern bool autoMode;
+extern unsigned long remainingWaitingTimeMs;
 
 /**
  * @brief Handle root page request.
