@@ -97,6 +97,8 @@ void loop() {
     SoilStatus soilStatus = soilSensor.getSoilStatus();
     float solarVoltageReading = solarSensor.read();
     float batteryVoltageReading = batterySensor.read();
+    Serial.print("Battery Voltage: ");
+    Serial.println(batteryVoltageReading);
     setBatteryLowLed(false /*&& buttonPressed*/);
 
     Serial.print("Soil Moisture: ");
