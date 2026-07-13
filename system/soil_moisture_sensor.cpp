@@ -11,8 +11,8 @@ float SoilMoistureSensor::read() {
     float percentage = map(normalizedAnalog, _dryValue, _wetValue, 0, 100);
 
     // Update status based on threshold comparison
-    // FLOATING: ADC reading is very low (sensor not properly in soil)
-    if (rawAnalog < _floatingThreshold) {
+    // FLOATING: ADC reading is very low (sensor not properly in soil) or moisture is 0%
+    if (rawAnalog < _floatingThreshold || percentage == 0.0) {
         _status = SoilStatus::FLOATING;
     } else if (rawAnalog > _wetThreshold) {
         _status = SoilStatus::DRY;
