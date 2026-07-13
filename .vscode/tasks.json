@@ -8,6 +8,12 @@
             "group": { "kind": "build", "isDefault": true },
             "problemMatcher": [],
             "detail": "Full workflow: compile then upload firmware to ESP32-C3 on COM14."
+        },
+        {
+            "command": "python find_esp.py",
+            "group": "test",
+            "label": "Find ESP IP",
+            "type": "shell"
         }
 	]
 }
