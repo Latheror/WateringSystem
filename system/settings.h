@@ -67,6 +67,13 @@
 #define BATTERY_LEVEL_PIN 4
 
 /**
+ * @brief Resistor values for the solar panel voltage divider.
+ *        Two 470k resistors are used.
+ */
+#define SOLAR_DIVIDER_R1 470000.0
+#define SOLAR_DIVIDER_R2 470000.0
+
+/**
  * @brief Resistor values for the battery voltage divider.
  *        Two 470k resistors are used.
  */

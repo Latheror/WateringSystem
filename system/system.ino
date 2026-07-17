@@ -22,7 +22,11 @@ WiFiReconnector wifiReconnector(WIFI_SSID, WIFI_PASS);
 // =========================
 SoilMoistureSensor soilSensor(SOIL_MOISTURE_SENSOR_ANALOG_PIN);
 
-VoltageSensor solarSensor(SOLAR_VOLTAGE_PIN);
+VoltageSensor solarSensor(
+    SOLAR_VOLTAGE_PIN,
+    3.3f,
+    4095,
+    (SOLAR_DIVIDER_R1 + SOLAR_DIVIDER_R2) / SOLAR_DIVIDER_R1);
 
 VoltageSensor batterySensor(
     BATTERY_LEVEL_PIN,
