@@ -143,6 +143,7 @@ async function toggleAutoMode() {
 <div class="card soil">
 <h2>Soil Status</h2>
 <div class="value">%SOIL%</div>
+<div class="value" style="font-size:1.2em;margin-top:4px">%SOIL_MOISTURE%%</div>
 </div>
 
 <div class="card solar">
@@ -186,9 +187,11 @@ static String renderPage()
     String page = FPSTR(PAGE_TEMPLATE);
 
     SoilStatus soilStatus = soilSensor.getSoilStatus();
+    float soilMoisture = soilSensor.read();
 
     page.replace("%SOIL%",
         soilStatus == SoilStatus::DRY ? "🌵 DRY" : "💧 WET");
+    page.replace("%SOIL_MOISTURE%", String(soilMoisture, 1));
 
     page.replace("%SOLAR%", String(solarVoltage, 2));
     page.replace("%BATTERY%", String(batteryVoltage, 2));
