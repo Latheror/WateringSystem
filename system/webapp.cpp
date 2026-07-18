@@ -190,7 +190,7 @@ static String renderPage()
     float soilMoisture = soilSensor.read();
 
     page.replace("%SOIL%",
-        soilStatus == SoilStatus::DRY ? "🌵 DRY" : "💧 WET");
+        soilStatus == SoilStatus::FLOATING ? "⚠️ FLOATING" : (soilStatus == SoilStatus::DRY ? "🌵 DRY" : "💧 WET"));
     page.replace("%SOIL_MOISTURE%", String(soilMoisture, 1));
 
     page.replace("%SOLAR%", String(solarVoltage, 2));
