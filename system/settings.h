@@ -43,7 +43,7 @@
  * @brief Soil moisture threshold (0-4095 ADC range).
  *        Values ABOVE this threshold = DRY, values BELOW = WET.
  */
-#define SOIL_MOISTURE_THRESHOLD 2048
+#define SOIL_MOISTURE_THRESHOLD (4096 * 3 / 4)
 
 /**
  * @brief Soil moisture floating threshold (0-4095 ADC range).

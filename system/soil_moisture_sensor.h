@@ -3,6 +3,7 @@
 
 #include <Arduino.h>
 #include "sensor.h"
+#include "settings.h"
 
 /**
  * @brief Implementation of a Soil Moisture Sensor.
@@ -26,7 +27,7 @@ public:
      * @param dryValue Raw value corresponding to dry soil.
      * @param wetValue Raw value corresponding to wet soil.
      */
-    SoilMoistureSensor(int analogPin, int floatingThreshold = 100, int wetThreshold = 2048, int analogMax = 4095, int dryValue = 4095, int wetValue = 0);
+    SoilMoistureSensor(int analogPin, int floatingThreshold = 100, int wetThreshold = SOIL_MOISTURE_THRESHOLD, int analogMax = 4095, int dryValue = 4095, int wetValue = 0);
 
     /**
      * @brief Reads the soil moisture level.
