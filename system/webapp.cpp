@@ -197,7 +197,14 @@ static String renderPage()
     page.replace("%BATTERY%", String(batteryVoltage, 2));
     page.replace("%PUMP%", pumpActive ? "🟢 ON" : "⚪ OFF");
     page.replace("%AUTO%", autoMode ? "✅ ON" : "❌ OFF");
-    page.replace("%REMAINING%", String(remainingWaitingTimeMs / 1000) + "s");
+    {
+        int remainingSeconds = remainingWaitingTimeMs / 1000;
+        if (remainingSeconds >= 60) {
+            page.replace("%REMAINING%", String(remainingSeconds / 60) + "mn");
+        } else {
+            page.replace("%REMAINING%", String(remainingSeconds) + "s");
+        }
+    }
 
     return page;
 }

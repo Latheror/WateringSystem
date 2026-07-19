@@ -119,7 +119,7 @@
 /**
  * @brief Interval (ms) between automatic watering cycles.
  */
-#define AUTO_WATERING_INTERVAL_MS    60000  // 1 minute
+#define AUTO_WATERING_INTERVAL_MS    (15 * 60 * 1000)  // 15 minutes
 
 
 // =========================
