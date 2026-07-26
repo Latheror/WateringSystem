@@ -85,10 +85,16 @@
 // LED STATUS INDICATOR PINS
 // =========================
 
-#define LED_PIN_WIFI_CONNECTED 8
-#define LED_PIN_PUMP_ACTIVE    7
 #define LED_PIN_BATTERY_LOW    5
 #define LED_PIN_AUTO_MODE      6
+#define LED_PIN_PUMP_ACTIVE    7
+#define LED_PIN_WIFI_CONNECTED 8
+
+/**
+ * @brief Battery voltage threshold for the low battery indicator.
+ *        Values BELOW this threshold trigger the low battery LED.
+ */
+#define BATTERY_LOW_THRESHOLD 3.5f
 
 
 // =========================

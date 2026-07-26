@@ -120,7 +120,7 @@ bool updateWateringState(unsigned long currentTime, bool soilIsDry) {
             elapsedSinceStart >= AUTO_WATERING_INTERVAL_MS;
 
         bool canStartManual = manualRequestPending;
-        bool canStartAuto = soilIsDry && cooldownFinished;
+        bool canStartAuto = autoMode && soilIsDry && cooldownFinished;
 
         if (canStartManual || canStartAuto) {
             wateringActive = true;
@@ -219,7 +219,7 @@ void loop() {
     readAndLogSensors(soilMoisture, soilStatus, solarVoltageReading,
                        batteryVoltageReading);
 
-    setBatteryLowLed(false);
+    setBatteryLowLed(batteryVoltageReading < BATTERY_LOW_THRESHOLD);
 
     // -------------------------
     // Watering control
