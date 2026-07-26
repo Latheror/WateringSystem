@@ -43,6 +43,7 @@ bool pumpActive = false;
 bool autoMode = true;
 
 bool wateringActive = false;
+bool wasWifiConnected = false;
 
 // Initialize so watering is immediately available after boot.
 unsigned long lastWateringStartTime =
@@ -202,6 +203,11 @@ void loop() {
     // -------------------------
     wifiReconnector.handle();
     bool wifiConnected = wifiReconnector.isConnected();
+
+    if (wifiConnected && !wasWifiConnected) {
+        WiFi.setSleep(true);
+    }
+    wasWifiConnected = wifiConnected;
 
     Serial.println(wifiConnected ? "wifiConnected: true"
                                  : "wifiConnected: false");
