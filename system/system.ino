@@ -225,7 +225,7 @@ void loop() {
     readAndLogSensors(soilMoisture, soilStatus, solarVoltageReading,
                        batteryVoltageReading);
 
-    setBatteryLowLed(batteryVoltageReading < BATTERY_LOW_THRESHOLD);
+    setBatteryLowLed(batteryVoltageReading < BATTERY_LOW_THRESHOLD && buttonPressed);
 
     // -------------------------
     // Watering control
