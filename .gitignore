@@ -1,0 +1,26 @@
+# PCB / KiCad
+# Design sources are versioned; generated and machine-local files are not.
+PCB/**/*.bak
+PCB/**/*.lck
+PCB/**/~*
+PCB/**/.history/
+PCB/**/*.kicad_prl
+PCB/**/gerber/
+PCB/**/*.gbr
+PCB/**/*.gbl
+PCB/**/*.gbo
+PCB/**/*.gbp
+PCB/**/*.gbs
+PCB/**/*.gm1
+PCB/**/*.gtl
+PCB/**/*.gto
+PCB/**/*.gtp
+PCB/**/*.gts
+PCB/**/*.drl
+PCB/**/*-job.gbrjob
+PCB/**/erc-report.json
+PCB/**/report.txt
+
+# Firmware
+# Local user settings contains Wi-Fi credentials.
+system/settings_user.h

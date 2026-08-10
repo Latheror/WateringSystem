@@ -35,3 +35,26 @@ This project is an automated watering system for plants, featuring soil moisture
 - `Case/`: 3D model files for the enclosure.
 - `Hardware/`: Component details and wiring diagrams.
 - `system/`: Source code for the ESP32C3 microcontroller.
+
+## PCB
+
+The KiCad design files for the watering system are located in `PCB/`. These files are read and edited with KiCad 10.
+
+### Design files
+
+- `PCB/WateringSystem_PCB/WateringSystem_PCB.kicad_pro`: KiCad project file. It stores the KiCad project configuration and references the schematic and PCB layout.
+- `PCB/WateringSystem_PCB/WateringSystem_PCB.kicad_sch`: KiCad schematic file. It describes the components, symbols, power rails, nets, and logical connections.
+- `PCB/WateringSystem_PCB/WateringSystem_PCB.kicad_pcb`: KiCad PCB board file. It contains the board outline, footprints, copper tracks, vias, zones, and silkscreen.
+- `PCB/WateringSystem_PCB/fp-lib-table`: KiCad footprint-library table. It tells KiCad where to find the custom and external footprint libraries used by the board.
+
+### Custom libraries
+
+- `PCB/ESP32-C3_SuperMini.kicad_sym`: Custom KiCad symbol-library file containing the ESP32-C3 SuperMini symbol used by the schematic.
+- `PCB/General.kicad_sym`: Custom KiCad symbol-library file containing additional project-specific schematic symbols.
+- `PCB/WateringSystem_PCB/ESP32-C3_SuperMini.pretty/ESP32-C3_SuperMini.kicad_mod`: Custom KiCad footprint file for the ESP32-C3 SuperMini module.
+
+### Konnect configuration
+
+- `PCB/WateringSystem_PCB/.konnect/project.json`: Project-specific KiCad/Konnect configuration, including design rules and fabrication preferences. Keep it versioned when those shared project settings are expected to be reproducible.
+
+Generated Gerbers, drill files, ERC reports, backups, lock files, KiCad local preferences, and history files are intentionally excluded by `.gitignore`. They can be regenerated from the versioned design sources when needed.
