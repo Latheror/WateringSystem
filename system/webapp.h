@@ -4,6 +4,7 @@
 #include <Arduino.h>
 #include <WebServer.h>
 #include "settings.h"
+#include "soil_moisture_sensor.h"
 
 extern WebServer server;
 
@@ -19,6 +20,8 @@ extern WebServer server;
 
 extern float solarVoltage;
 extern float batteryVoltage;
+extern float soilMoisture;
+extern SoilStatus soilStatus;
 extern bool pumpActive;
 extern bool autoMode;
 extern unsigned long remainingWaitingTimeMs;

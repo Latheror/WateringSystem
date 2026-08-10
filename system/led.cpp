@@ -11,10 +11,11 @@ void initLeds() {
     pinMode(LED_PIN_BATTERY_LOW, OUTPUT);
     pinMode(LED_PIN_AUTO_MODE, OUTPUT);
 
-    digitalWrite(LED_PIN_WIFI_CONNECTED, LOW);
-    digitalWrite(LED_PIN_PUMP_ACTIVE, LOW);
-    digitalWrite(LED_PIN_BATTERY_LOW, LOW);
-    digitalWrite(LED_PIN_AUTO_MODE, LOW);
+    // The board LEDs are active-low: HIGH is the electrical OFF level.
+    digitalWrite(LED_PIN_WIFI_CONNECTED, HIGH);
+    digitalWrite(LED_PIN_PUMP_ACTIVE, HIGH);
+    digitalWrite(LED_PIN_BATTERY_LOW, HIGH);
+    digitalWrite(LED_PIN_AUTO_MODE, HIGH);
 }
 
 /**

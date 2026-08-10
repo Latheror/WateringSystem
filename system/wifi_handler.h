@@ -46,10 +46,9 @@ public:
     WiFiReconnector(const char* ssid, const char* password);
 
     /**
-     * @brief Attempt initial connection with a short retry loop.
-     *
-     * Blocks for up to WIFI_STARTUP_RETRY_PERIOD ms, retrying
-     * every WIFI_RETRY_BASE_DELAY_MS. Call once in setup().
+    * @brief Start the initial connection attempt without blocking.
+    *
+    * Call once in setup(), then call handle() from loop().
      *
      * @return true if connected, false otherwise.
      */

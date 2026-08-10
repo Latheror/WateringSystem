@@ -7,30 +7,17 @@
 /**
  * @brief Connects to a WiFi network and prints status to Serial.
  *
- * Attempts to connect to the specified WiFi network, printing progress
- * and result to the Serial monitor. Retries for up to 10 seconds.
+ * Starts a connection attempt without blocking the main loop. Connection
+ * progress is handled by WiFiReconnector::handle().
  *
  * @param ssid     WiFi SSID (network name)
  * @param password WiFi password
  */
 bool connectToWiFi(const char* ssid, const char* password) {
+    WiFi.mode(WIFI_STA);
     WiFi.begin(ssid, password);
-    Serial.print("Connecting to WiFi");
-    int retries = 0;
-    while (WiFi.status() != WL_CONNECTED && retries < 50) {
-        delay(200);
-        Serial.print(".");
-        retries++;
-    }
-    bool connected = WiFi.status() == WL_CONNECTED;
-    if (connected) {
-        Serial.println("\nWiFi connected!");
-        Serial.print("IP address: ");
-        Serial.println(WiFi.localIP());
-    } else {
-        Serial.println("\nFailed to connect to WiFi");
-    }
-    return connected;
+    Serial.println("WiFi connection started");
+    return WiFi.status() == WL_CONNECTED;
 }
 
 // =========================
@@ -53,7 +40,7 @@ bool WiFiReconnector::begin() {
     } else {
         _wasConnected = false;
         _lastAttemptMs = millis();
-        Serial.println("[WiFiReconnector] Failed — retries will be handled in loop()");
+        Serial.println("[WiFiReconnector] Connection pending — retries will be handled in loop()");
     }
     return ok;
 }
@@ -91,30 +78,11 @@ void WiFiReconnector::handle() {
         Serial.print(_currentDelayMs);
         Serial.println("ms)...");
 
-        // Ensure driver is fully idle before reconfiguring/connecting
+        // Ensure the driver is idle before reconfiguring/connecting.
         WiFi.disconnect(false, false);
-        delay(100); // let the STA state machine settle
         WiFi.begin(_ssid, _password);
-
-        int retries = 0;
-        while (WiFi.status() != WL_CONNECTED && retries < 25) {
-            delay(200);
-            retries++;
-        }
-
-        if (WiFi.status() == WL_CONNECTED) {
-            Serial.println("[WiFiReconnector] Reconnected successfully!");
-            Serial.print("IP address: ");
-            Serial.println(WiFi.localIP());
-            _wasConnected = true;
-            _currentDelayMs = WIFI_RETRY_BASE_DELAY_MS;
-        } else {
-            Serial.println("[WiFiReconnector] Reconnect attempt failed");
-            _currentDelayMs = min(_currentDelayMs * 2, (unsigned long)WIFI_RETRY_MAX_DELAY_MS);
-            Serial.print("[WiFiReconnector] Next retry in ");
-            Serial.print(_currentDelayMs / 1000);
-            Serial.println(" seconds");
-        }
+        Serial.println("[WiFiReconnector] Reconnect started (non-blocking)");
+        _currentDelayMs = min(_currentDelayMs * 2, (unsigned long)WIFI_RETRY_MAX_DELAY_MS);
         _lastAttemptMs = millis();
     }
 }

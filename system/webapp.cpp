@@ -14,10 +14,10 @@ extern void onManualWateringRequest();
 // =========================
 // Global sensor + values
 // =========================
-extern SoilMoistureSensor soilSensor;
-
 float solarVoltage = 0.0;
 float batteryVoltage = 0.0;
+float soilMoisture = 0.0;
+SoilStatus soilStatus = SoilStatus::UNKNOWN;
 
 // =========================
 // HTML TEMPLATE (Flash)
@@ -185,9 +185,6 @@ async function toggleAutoMode() {
 static String renderPage()
 {
     String page = FPSTR(PAGE_TEMPLATE);
-
-    SoilStatus soilStatus = soilSensor.getSoilStatus();
-    float soilMoisture = soilSensor.read();
 
     page.replace("%SOIL%",
         soilStatus == SoilStatus::FLOATING ? "⚠️ FLOATING" : (soilStatus == SoilStatus::DRY ? "🌵 DRY" : "💧 WET"));

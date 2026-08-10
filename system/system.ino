@@ -120,6 +120,7 @@ bool updateWateringState(unsigned long currentTime, bool soilIsDry) {
         bool cooldownFinished =
             elapsedSinceStart >= AUTO_WATERING_INTERVAL_MS;
 
+        // Manual requests are intentional overrides and always bypass cooldown.
         bool canStartManual = manualRequestPending;
         bool canStartAuto = autoMode && soilIsDry && cooldownFinished;
 
@@ -166,7 +167,8 @@ void setup() {
     Serial.begin(115200);
     Serial.println("Start");
 
-    pinMode(LED_BUILTIN, OUTPUT);
+    // Drive the active-low relay to its safe state before enabling the output.
+    digitalWrite(RELAY_PIN, HIGH);
     pinMode(RELAY_PIN, OUTPUT);
     pinMode(SOLAR_VOLTAGE_PIN, INPUT);
     pinMode(BATTERY_LEVEL_PIN, INPUT);
@@ -193,9 +195,8 @@ void loop() {
     // -------------------------
     // Button
     // -------------------------
-    bool buttonPressed = isButtonPressed();
-    if (buttonPressed) {
-        Serial.println("Button pressed");
+    if (wasButtonPressed()) {
+        onManualWateringRequest();
     }
 
     // -------------------------
@@ -212,26 +213,30 @@ void loop() {
     Serial.println(wifiConnected ? "wifiConnected: true"
                                  : "wifiConnected: false");
 
-    setWifiLed(wifiConnected && buttonPressed);
-    setAutoModeLed(autoMode && buttonPressed);
+    setWifiLed(wifiConnected);
+    setAutoModeLed(autoMode);
 
     server.handleClient();
 
     // -------------------------
     // Sensors
     // -------------------------
-    float soilMoisture, solarVoltageReading, batteryVoltageReading;
-    SoilStatus soilStatus;
-    readAndLogSensors(soilMoisture, soilStatus, solarVoltageReading,
+    float soilMoistureReading, solarVoltageReading, batteryVoltageReading;
+    SoilStatus soilStatusReading;
+    readAndLogSensors(soilMoistureReading, soilStatusReading, solarVoltageReading,
                        batteryVoltageReading);
 
-    setBatteryLowLed(batteryVoltageReading < BATTERY_LOW_THRESHOLD && buttonPressed);
+    // Publish the same coherent sample that drives the controller and UI.
+    soilMoisture = soilMoistureReading;
+    soilStatus = soilStatusReading;
+
+    setBatteryLowLed(batteryVoltageReading < BATTERY_LOW_THRESHOLD);
 
     // -------------------------
     // Watering control
     // -------------------------
     unsigned long currentTime = millis();
-    bool soilIsDry = (soilStatus == SoilStatus::DRY);
+    bool soilIsDry = (soilStatusReading == SoilStatus::DRY);
 
     bool shouldWater = updateWateringState(currentTime, soilIsDry);
 
@@ -239,7 +244,7 @@ void loop() {
 
     setPumpState(shouldWater);
     pumpActive = shouldWater;
-    setPumpLed(pumpActive && buttonPressed);
+    setPumpLed(pumpActive);
 
     Serial.println(shouldWater ? "Relay: ON" : "Relay: OFF");
 
