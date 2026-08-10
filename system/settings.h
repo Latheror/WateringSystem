@@ -13,11 +13,6 @@
 // =========================
 
 /**
- * @brief GPIO pin number for the onboard LED (ESP32C3).
- */
-#define LED_BUILTIN 8
-
-/**
  * @brief GPIO pin connected to the push button.
  *        Button connects VCC to this pin. Internal pulldown enabled;
  *        add an external 10kΩ pulldown if unstable.
