@@ -7,6 +7,7 @@
 #include "webapp.h"
 #include "soil_moisture_sensor.h"
 #include "voltage_sensor.h"
+#include "battery.h"
 #include "led.h"
 #include "button.h"
 
@@ -28,11 +29,7 @@ VoltageSensor solarSensor(
     4095,
     (SOLAR_DIVIDER_R1 + SOLAR_DIVIDER_R2) / SOLAR_DIVIDER_R1);
 
-VoltageSensor batterySensor(
-    BATTERY_LEVEL_PIN,
-    3.3f,
-    4095,
-    (BATTERY_DIVIDER_R1 + BATTERY_DIVIDER_R2) / BATTERY_DIVIDER_R1);
+Battery battery;
 
 // =========================
 // SYSTEM STATE
@@ -85,7 +82,7 @@ void readAndLogSensors(float &soilMoisture, SoilStatus &soilStatus,
     soilStatus = soilSensor.getSoilStatus();
 
     solarVoltageReading = solarSensor.read();
-    batteryVoltageReading = batterySensor.read();
+    batteryVoltageReading = battery.read();
 
     const char *soilStatusStr = "UNKNOWN";
     switch (soilStatus) {
@@ -106,14 +103,24 @@ void readAndLogSensors(float &soilMoisture, SoilStatus &soilStatus,
  *
  * Starts a new watering cycle if either a manual request is pending, or
  * the soil is dry and the cooldown since the last cycle has elapsed.
- * Ends the cycle once AUTO_WATERING_DURATION_MS has passed.
+ * Ends the cycle once AUTO_WATERING_DURATION_MS has passed. Manual watering
+ * is allowed even when the battery is low.
  *
  * @param currentTime Current time, in milliseconds (from millis()).
  * @param soilIsDry   Whether the soil sensor currently reports DRY.
+ * @param batteryLow  Whether the battery is below the pump safety threshold.
  * @return true if the pump should be ON right now, false otherwise.
  */
-bool updateWateringState(unsigned long currentTime, bool soilIsDry) {
+bool updateWateringState(unsigned long currentTime, bool soilIsDry,
+                         bool batteryLow) {
     unsigned long elapsedSinceStart = currentTime - lastWateringStartTime;
+
+    // Low battery stops automatic watering, but not manual watering.
+    if (batteryLow && wateringActive && !manualMode) {
+        wateringActive = false;
+        Serial.println("Watering stopped: battery too low");
+        return false;
+    }
 
     // Try to start a new watering cycle
     if (!wateringActive) {
@@ -122,7 +129,7 @@ bool updateWateringState(unsigned long currentTime, bool soilIsDry) {
 
         // Manual requests are intentional overrides and always bypass cooldown.
         bool canStartManual = manualRequestPending;
-        bool canStartAuto = autoMode && soilIsDry && cooldownFinished;
+        bool canStartAuto = autoMode && soilIsDry && cooldownFinished && !batteryLow;
 
         if (canStartManual || canStartAuto) {
             wateringActive = true;
@@ -171,7 +178,7 @@ void setup() {
     digitalWrite(RELAY_PIN, HIGH);
     pinMode(RELAY_PIN, OUTPUT);
     pinMode(SOLAR_VOLTAGE_PIN, INPUT);
-    pinMode(BATTERY_LEVEL_PIN, INPUT);
+    battery.begin();
 
     setPumpState(false);
 
@@ -230,7 +237,8 @@ void loop() {
     soilMoisture = soilMoistureReading;
     soilStatus = soilStatusReading;
 
-    setBatteryLowLed(batteryVoltageReading < BATTERY_LOW_THRESHOLD);
+    bool batteryLow = battery.isLow(batteryVoltageReading);
+    setBatteryLowLed(batteryLow);
 
     // -------------------------
     // Watering control
@@ -238,7 +246,7 @@ void loop() {
     unsigned long currentTime = millis();
     bool soilIsDry = (soilStatusReading == SoilStatus::DRY);
 
-    bool shouldWater = updateWateringState(currentTime, soilIsDry);
+    bool shouldWater = updateWateringState(currentTime, soilIsDry, batteryLow);
 
     Serial.println(shouldWater ? "shouldWater: TRUE" : "shouldWater: FALSE");
 
