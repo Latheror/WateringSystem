@@ -3094,423 +3094,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "power:+3V8"
-			(power global)
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "#PWR"
-				(at 0 -3.81 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "+3V8"
-				(at 0 3.556 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "Power symbol creates a global label with name \"+3V8\""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_keywords" "global power"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "+3V8_0_1"
-				(polyline
-					(pts
-						(xy -0.762 1.27) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 2.54) (xy 0.762 1.27)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "+3V8_1_1"
-				(pin power_in line
-					(at 0 0 90)
-					(length 0)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "power:+4V"
-			(power global)
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "#PWR"
-				(at 0 -3.81 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "+4V"
-				(at 0 3.556 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "Power symbol creates a global label with name \"+4V\""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_keywords" "global power"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "+4V_0_1"
-				(polyline
-					(pts
-						(xy -0.762 1.27) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 2.54) (xy 0.762 1.27)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "+4V_1_1"
-				(pin power_in line
-					(at 0 0 90)
-					(length 0)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
-		(symbol "power:+5V"
-			(power global)
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "#PWR"
-				(at 0 -3.81 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "+5V"
-				(at 0 3.556 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" ""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "Power symbol creates a global label with name \"+5V\""
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_keywords" "global power"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "+5V_0_1"
-				(polyline
-					(pts
-						(xy -0.762 1.27) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 2.54) (xy 0.762 1.27)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 0) (xy 0 2.54)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "+5V_1_1"
-				(pin power_in line
-					(at 0 0 90)
-					(length 0)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "power:GND"
 			(power global)
 			(pin_numbers
@@ -3621,6 +3204,121 @@
 								(size 1.27 1.27)
 							)
 						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "power:PWR_FLAG"
+			(power global)
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "#FLG"
+				(at 0 1.905 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "PWR_FLAG"
+				(at 0 3.81 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "Special symbol for telling ERC where power comes from"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "flag power"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "PWR_FLAG_0_0"
+				(pin power_out line
+					(at 0 0 90)
+					(length 0)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "PWR_FLAG_0_1"
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 1.27) (xy -1.016 1.905) (xy 0 2.54) (xy 1.016 1.905) (xy 0 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
 					)
 				)
 			)
@@ -3793,6 +3491,12 @@
 		(uuid "587c04b6-b702-4d09-bcbd-32734a75f619")
 	)
 	(junction
+		(at 73.66 138.43)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "5c0a1305-cc14-420a-86bd-08d8cd19f2d4")
+	)
+	(junction
 		(at 157.48 97.79)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3835,6 +3539,12 @@
 		(uuid "84b8ee5f-b7a5-42d5-b9fa-62e55f8d81ea")
 	)
 	(junction
+		(at 274.32 53.34)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "89779eb7-269d-444b-b7c5-328343122457")
+	)
+	(junction
 		(at 128.27 95.25)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3853,12 +3563,6 @@
 		(uuid "8f1bbcaf-87a3-41af-b786-c461ca3ffed2")
 	)
 	(junction
-		(at 73.66 138.43)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "972d4969-40d2-48c4-b45c-d96e7e5ab329")
-	)
-	(junction
 		(at 259.08 82.55)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3875,12 +3579,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "a4fae266-0233-4722-ae53-1218223649fa")
-	)
-	(junction
-		(at 274.32 53.34)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "a8839f6c-d6f9-4a5b-9aa6-1cdfc8d4cb08")
 	)
 	(junction
 		(at 245.11 57.15)
@@ -3917,6 +3615,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "cd2cefd2-59b5-43bb-8fb9-ef13d02c1f97")
+	)
+	(junction
+		(at 259.08 88.9)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "cd36509f-2243-4c1a-ab9d-adfb2a66bde8")
 	)
 	(junction
 		(at 217.17 57.15)
@@ -4135,16 +3839,6 @@
 			(type default)
 		)
 		(uuid "0f782bd1-a66f-4bc4-a313-03268b145ed2")
-	)
-	(wire
-		(pts
-			(xy 125.73 133.35) (xy 125.73 105.41)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "131bde20-a74a-49fb-8e73-a899f7199a00")
 	)
 	(wire
 		(pts
@@ -4718,6 +4412,16 @@
 	)
 	(wire
 		(pts
+			(xy 274.32 53.34) (xy 274.32 55.88)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "51b5ab73-82e8-4921-960c-c00c7e457825")
+	)
+	(wire
+		(pts
 			(xy 255.27 114.3) (xy 245.11 114.3)
 		)
 		(stroke
@@ -4775,6 +4479,16 @@
 			(type default)
 		)
 		(uuid "59497200-2d26-42cc-9770-d905607c1699")
+	)
+	(wire
+		(pts
+			(xy 210.82 88.9) (xy 259.08 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5ae406e6-1c48-40c5-b2c5-6aefd309b0c9")
 	)
 	(wire
 		(pts
@@ -5138,6 +4852,16 @@
 	)
 	(wire
 		(pts
+			(xy 125.73 138.43) (xy 146.05 138.43)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "812ef6df-605a-42e0-8196-8f02ab92caac")
+	)
+	(wire
+		(pts
 			(xy 157.48 97.79) (xy 157.48 119.38)
 		)
 		(stroke
@@ -5165,16 +4889,6 @@
 			(type default)
 		)
 		(uuid "897d0ba4-ca3c-4816-a86c-4b0c0e3d520d")
-	)
-	(wire
-		(pts
-			(xy 52.07 168.91) (xy 55.88 168.91)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "89f002ea-064d-45c8-96ff-e73c2af8d569")
 	)
 	(wire
 		(pts
@@ -5278,7 +4992,7 @@
 	)
 	(wire
 		(pts
-			(xy 210.82 66.04) (xy 210.82 81.28)
+			(xy 210.82 66.04) (xy 210.82 88.9)
 		)
 		(stroke
 			(width 0)
@@ -5468,6 +5182,16 @@
 	)
 	(wire
 		(pts
+			(xy 46.99 168.91) (xy 55.88 168.91)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b6aaca7f-e460-41de-95a2-54f058bb4dbc")
+	)
+	(wire
+		(pts
 			(xy 176.53 95.25) (xy 176.53 97.79)
 		)
 		(stroke
@@ -5485,16 +5209,6 @@
 			(type default)
 		)
 		(uuid "baac8b9c-e1dd-4202-a109-9495d8e1cc7b")
-	)
-	(wire
-		(pts
-			(xy 264.16 58.42) (xy 264.16 57.15)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "bc39e6bb-6652-4bcb-81f1-6bbe62524112")
 	)
 	(wire
 		(pts
@@ -5558,6 +5272,16 @@
 	)
 	(wire
 		(pts
+			(xy 214.63 142.24) (xy 214.63 146.05)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cb0b3121-f389-463b-90c3-1b2d220dbf0f")
+	)
+	(wire
+		(pts
 			(xy 78.74 63.5) (xy 120.65 63.5)
 		)
 		(stroke
@@ -5615,6 +5339,16 @@
 			(type default)
 		)
 		(uuid "d442110b-20ff-47e4-b5c4-fbd3463f15ab")
+	)
+	(wire
+		(pts
+			(xy 125.73 105.41) (xy 125.73 138.43)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d4f4a68e-1246-4403-9fb6-4ba60db86f99")
 	)
 	(wire
 		(pts
@@ -5836,92 +5570,35 @@
 		)
 		(uuid "fff105ae-84e3-4a82-ac65-a980e98a2365")
 	)
+	(label "+V_PUMP_CTRL"
+		(at 46.99 168.91 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "2c737587-024c-4265-869e-4630423e1a96")
+	)
 	(label "MOISTURE_SENSOR_ANALOG"
-		(at 152.4 129.54 0)
+		(at 152.4 127 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "4671145f-2999-4cc5-84e2-42d1837becac")
+		(uuid "d060b98a-af7a-4f77-ae34-6138f53eff16")
 	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 120.65 54.61 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "02500539-7e03-467c-96b1-04611296e21a")
-		(property "Reference" "#PWR02"
-			(at 120.65 58.42 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
+	(label "+V_PUMP_CTRL"
+		(at 146.05 138.43 0)
+		(effects
+			(font
+				(size 1.27 1.27)
 			)
+			(justify left bottom)
 		)
-		(property "Value" "+5V"
-			(at 120.142 49.784 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 120.65 54.61 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 120.65 54.61 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 120.65 54.61 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "74a6a0c8-333a-46d9-8bf2-cf10a3f0e3f5")
-		)
-		(instances
-			(project "WateringSystem_PCB"
-				(path "/cf8c2f23-ff9e-40d6-9429-99a23bea10dd"
-					(reference "#PWR02")
-					(unit 1)
-				)
-			)
-		)
+		(uuid "ece667c8-a369-4e30-98a9-fb3bd8513e86")
 	)
 	(symbol
 		(lib_id "Device:C")
@@ -6079,6 +5756,162 @@
 			(project "WateringSystem_PCB"
 				(path "/cf8c2f23-ff9e-40d6-9429-99a23bea10dd"
 					(reference "R2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 120.65 54.61 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "0af8f081-a650-43fd-9bc8-797f1da81cd4")
+		(property "Reference" "#FLG06"
+			(at 120.65 52.705 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+5V"
+			(at 120.65 49.53 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 120.65 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 120.65 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 120.65 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a154c068-a3b6-4180-a57f-f39f932fb9a3")
+		)
+		(instances
+			(project "WateringSystem_PCB"
+				(path "/cf8c2f23-ff9e-40d6-9429-99a23bea10dd"
+					(reference "#FLG06")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 259.08 88.9 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "119e33dd-24c9-45c2-9f38-002e0b3bddc8")
+		(property "Reference" "#PWR019"
+			(at 259.08 95.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 259.08 93.98 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 259.08 88.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 259.08 88.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 259.08 88.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "9f4ba1e6-cd2a-4c60-8f10-a8fc8841a97f")
+		)
+		(instances
+			(project "WateringSystem_PCB"
+				(path "/cf8c2f23-ff9e-40d6-9429-99a23bea10dd"
+					(reference "#PWR019")
 					(unit 1)
 				)
 			)
@@ -6878,8 +6711,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 274.32 53.34 0)
+		(lib_id "power:PWR_FLAG")
+		(at 74.93 158.75 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -6888,9 +6721,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "3bd865e2-f533-4ca4-98e8-2b1756304db8")
-		(property "Reference" "#PWR07"
-			(at 274.32 59.69 0)
+		(uuid "36c60e90-25e2-4582-a0a7-538b482c620c")
+		(property "Reference" "#FLG010"
+			(at 74.93 156.845 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6900,8 +6733,8 @@
 				)
 			)
 		)
-		(property "Value" "GND"
-			(at 274.32 58.42 0)
+		(property "Value" "+5V"
+			(at 74.93 153.67 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6911,7 +6744,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 274.32 53.34 0)
+			(at 74.93 158.75 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6922,7 +6755,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 274.32 53.34 0)
+			(at 74.93 158.75 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6932,87 +6765,8 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 274.32 53.34 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "ff84f4ae-a4ff-45a4-89bb-a4c6a98a6976")
-		)
-		(instances
-			(project "WateringSystem_PCB"
-				(path "/cf8c2f23-ff9e-40d6-9429-99a23bea10dd"
-					(reference "#PWR07")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 236.22 27.94 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "3c3a7f51-304a-45c0-9868-01a3936686dd")
-		(property "Reference" "#PWR05"
-			(at 242.57 27.94 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 240.03 27.9399 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 236.22 27.94 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 236.22 27.94 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 236.22 27.94 0)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 74.93 158.75 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7023,168 +6777,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "641e4081-a0bc-478b-a624-f35fc77bef38")
+			(uuid "3206cc47-b1ca-45de-aa40-bbf6eca5058e")
 		)
 		(instances
 			(project "WateringSystem_PCB"
 				(path "/cf8c2f23-ff9e-40d6-9429-99a23bea10dd"
-					(reference "#PWR05")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+4V")
-		(at 52.07 168.91 90)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "3eb0887a-db84-4a96-89ae-53414f5c86cc")
-		(property "Reference" "#PWR016"
-			(at 55.88 168.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+V_PUMP_CTRL"
-			(at 48.26 168.9099 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 52.07 168.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 52.07 168.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+4V\""
-			(at 52.07 168.91 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "9623655d-e34f-41e6-86da-27aa505d4a0d")
-		)
-		(instances
-			(project "WateringSystem_PCB"
-				(path "/cf8c2f23-ff9e-40d6-9429-99a23bea10dd"
-					(reference "#PWR016")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 74.93 181.61 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "42f5291d-4e67-4456-882c-c8322774f70c")
-		(property "Reference" "#PWR020"
-			(at 74.93 177.8 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+V_PUMP"
-			(at 74.93 189.23 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 74.93 181.61 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 74.93 181.61 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 74.93 181.61 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "9a021801-d345-49cc-880d-105bc4eb7cad")
-		)
-		(instances
-			(project "WateringSystem_PCB"
-				(path "/cf8c2f23-ff9e-40d6-9429-99a23bea10dd"
-					(reference "#PWR020")
+					(reference "#FLG010")
 					(unit 1)
 				)
 			)
@@ -7347,162 +6945,6 @@
 			(project "WateringSystem_PCB"
 				(path "/cf8c2f23-ff9e-40d6-9429-99a23bea10dd"
 					(reference "R_LED3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 259.08 88.9 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "49d1bef0-89a9-4f2a-999d-dfbe3fb2415b")
-		(property "Reference" "#PWR03"
-			(at 259.08 95.25 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 259.08 93.98 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 259.08 88.9 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 259.08 88.9 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 259.08 88.9 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "98bd498a-dcf0-443d-98cc-ec8602473cd1")
-		)
-		(instances
-			(project "WateringSystem_PCB"
-				(path "/cf8c2f23-ff9e-40d6-9429-99a23bea10dd"
-					(reference "#PWR03")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 227.33 146.05 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "4b1d151c-5f64-44cd-873c-976d71401a37")
-		(property "Reference" "#PWR010"
-			(at 227.33 152.4 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 227.33 151.13 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 227.33 146.05 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 227.33 146.05 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 227.33 146.05 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "244aa5e5-10f0-4bb6-9688-3c9176f6a138")
-		)
-		(instances
-			(project "WateringSystem_PCB"
-				(path "/cf8c2f23-ff9e-40d6-9429-99a23bea10dd"
-					(reference "#PWR010")
 					(unit 1)
 				)
 			)
@@ -7774,6 +7216,84 @@
 			(project "WateringSystem_PCB"
 				(path "/cf8c2f23-ff9e-40d6-9429-99a23bea10dd"
 					(reference "C5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 153.67 54.61 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "528c40a5-fb53-4b43-9d11-339651639118")
+		(property "Reference" "#FLG05"
+			(at 153.67 52.705 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+V_SOL"
+			(at 153.67 49.53 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 153.67 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 153.67 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 153.67 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "c33c3c13-3168-423f-b8fe-add26da1c939")
+		)
+		(instances
+			(project "WateringSystem_PCB"
+				(path "/cf8c2f23-ff9e-40d6-9429-99a23bea10dd"
+					(reference "#FLG05")
 					(unit 1)
 				)
 			)
@@ -8177,84 +7697,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+3V8")
-		(at 234.95 53.34 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "5d207961-091c-43ea-be45-af802c20b5ce")
-		(property "Reference" "#PWR06"
-			(at 234.95 57.15 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "TP4056_VCC"
-			(at 234.95 48.26 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 234.95 53.34 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 234.95 53.34 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3V8\""
-			(at 234.95 53.34 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "f5a87cad-391e-4067-be16-ecc721e9f443")
-		)
-		(instances
-			(project "WateringSystem_PCB"
-				(path "/cf8c2f23-ff9e-40d6-9429-99a23bea10dd"
-					(reference "#PWR06")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Mechanical:MountingHole")
 		(at 20.32 19.05 0)
 		(unit 1)
@@ -8407,84 +7849,6 @@
 			(project "WateringSystem_PCB"
 				(path "/cf8c2f23-ff9e-40d6-9429-99a23bea10dd"
 					(reference "R_BTN1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+4V")
-		(at 125.73 133.35 180)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "6235f3e2-a71f-41c4-9520-a424a72d6be1")
-		(property "Reference" "#PWR015"
-			(at 125.73 129.54 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+V_PUMP_CTRL"
-			(at 125.73 138.43 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 125.73 133.35 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 125.73 133.35 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+4V\""
-			(at 125.73 133.35 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "0b42e8df-0a67-4332-b23f-f2853ed16d52")
-		)
-		(instances
-			(project "WateringSystem_PCB"
-				(path "/cf8c2f23-ff9e-40d6-9429-99a23bea10dd"
-					(reference "#PWR015")
 					(unit 1)
 				)
 			)
@@ -8660,10 +8024,9 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "644bb1a8-c392-45ed-9089-391164d20320")
 		(property "Reference" "TP_VBATT1"
-			(at 131.318 53.34 90)
+			(at 135.128 60.96 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8673,7 +8036,7 @@
 			)
 		)
 		(property "Value" "TestPoint"
-			(at 131.318 55.88 90)
+			(at 134.62 63.5 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -8804,6 +8167,85 @@
 			(project "WateringSystem_PCB"
 				(path "/cf8c2f23-ff9e-40d6-9429-99a23bea10dd"
 					(reference "R_BAT1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 250.19 30.48 270)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "68835de5-422e-449a-89cc-b3b44f9c8620")
+		(property "Reference" "#FLG08"
+			(at 252.095 30.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "+V_SOL"
+			(at 254 30.4799 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 250.19 30.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 250.19 30.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 250.19 30.48 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "eac832ae-32d1-4dbd-af9f-0ac25a269103")
+		)
+		(instances
+			(project "WateringSystem_PCB"
+				(path "/cf8c2f23-ff9e-40d6-9429-99a23bea10dd"
+					(reference "#FLG08")
 					(unit 1)
 				)
 			)
@@ -9283,6 +8725,84 @@
 		)
 	)
 	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 234.95 53.34 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "8a4d4b69-049f-4c5b-bd0e-2316a1ead838")
+		(property "Reference" "#FLG01"
+			(at 234.95 51.435 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "TP4056_VCC"
+			(at 234.95 48.26 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 234.95 53.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 234.95 53.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 234.95 53.34 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "3233ffba-35e2-4069-8123-f7ffe24a7098")
+		)
+		(instances
+			(project "WateringSystem_PCB"
+				(path "/cf8c2f23-ff9e-40d6-9429-99a23bea10dd"
+					(reference "#FLG01")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:L")
 		(at 227.33 114.3 90)
 		(unit 1)
@@ -9541,8 +9061,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+5V")
-		(at 77.47 138.43 270)
+		(lib_id "power:GND")
+		(at 227.33 146.05 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -9550,9 +9070,10 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "a1e3341c-1d6d-4f32-a3e0-1b77bb9aa91c")
-		(property "Reference" "#PWR019"
-			(at 73.66 138.43 0)
+		(fields_autoplaced yes)
+		(uuid "9dc9027b-4e22-465c-b0bf-8710a71fad41")
+		(property "Reference" "#PWR017"
+			(at 227.33 152.4 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9562,8 +9083,8 @@
 				)
 			)
 		)
-		(property "Value" "+V_PUMP"
-			(at 85.09 138.43 90)
+		(property "Value" "GND"
+			(at 227.33 151.13 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -9573,7 +9094,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 77.47 138.43 0)
+			(at 227.33 146.05 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9584,7 +9105,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 77.47 138.43 0)
+			(at 227.33 146.05 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9594,8 +9115,8 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 77.47 138.43 0)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 227.33 146.05 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9606,12 +9127,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "7bf92b73-fe1f-40bc-a4d7-4218a42c9d82")
+			(uuid "07669b13-a428-484d-9e12-70a03feff0f1")
 		)
 		(instances
 			(project "WateringSystem_PCB"
 				(path "/cf8c2f23-ff9e-40d6-9429-99a23bea10dd"
-					(reference "#PWR019")
+					(reference "#PWR017")
 					(unit 1)
 				)
 			)
@@ -9883,6 +9404,84 @@
 		)
 	)
 	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 214.63 146.05 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "aa36f262-ecee-4042-a7a3-d299a940d9a6")
+		(property "Reference" "#FLG02"
+			(at 214.63 147.955 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 214.63 151.13 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 214.63 146.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 214.63 146.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 214.63 146.05 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "4991ebc1-8680-4d99-8562-d0a98e5239c3")
+		)
+		(instances
+			(project "WateringSystem_PCB"
+				(path "/cf8c2f23-ff9e-40d6-9429-99a23bea10dd"
+					(reference "#FLG02")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R")
 		(at 72.39 91.44 90)
 		(unit 1)
@@ -10063,6 +9662,84 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 274.32 55.88 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ac2e7af1-b970-4297-b085-c942014a05ec")
+		(property "Reference" "#PWR016"
+			(at 274.32 62.23 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 274.32 60.96 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 274.32 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 274.32 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 274.32 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "550dbeec-28de-4adb-97bc-dcecbba02df0")
+		)
+		(instances
+			(project "WateringSystem_PCB"
+				(path "/cf8c2f23-ff9e-40d6-9429-99a23bea10dd"
+					(reference "#PWR016")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 210.82 62.23 0)
 		(unit 1)
@@ -10223,8 +9900,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+5V")
-		(at 261.62 114.3 270)
+		(lib_id "power:PWR_FLAG")
+		(at 77.47 138.43 270)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -10233,9 +9910,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "c4ef3ab7-4787-45ba-8c33-eb8076ecc47d")
-		(property "Reference" "#PWR011"
-			(at 257.81 114.3 0)
+		(uuid "b9f05b06-2206-4e9b-99fb-915b3c40ec4d")
+		(property "Reference" "#FLG03"
+			(at 79.375 138.43 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10245,8 +9922,8 @@
 				)
 			)
 		)
-		(property "Value" "+5V"
-			(at 265.43 114.2999 90)
+		(property "Value" "+V_PUMP"
+			(at 81.28 138.4299 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -10257,7 +9934,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 261.62 114.3 0)
+			(at 77.47 138.43 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10268,7 +9945,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 261.62 114.3 0)
+			(at 77.47 138.43 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10278,8 +9955,8 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 261.62 114.3 0)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 77.47 138.43 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10290,20 +9967,20 @@
 			)
 		)
 		(pin "1"
-			(uuid "2e50adda-f2e2-46a0-a3ac-f406d6acdbdb")
+			(uuid "d79b445e-28a6-40aa-9561-ebb38b8b5405")
 		)
 		(instances
 			(project "WateringSystem_PCB"
 				(path "/cf8c2f23-ff9e-40d6-9429-99a23bea10dd"
-					(reference "#PWR011")
+					(reference "#FLG03")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 128.27 54.61 180)
+		(lib_id "power:PWR_FLAG")
+		(at 74.93 181.61 180)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -10311,9 +9988,10 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "c5b95326-209f-4015-9007-b92b1cc92c8c")
-		(property "Reference" "#PWR01"
-			(at 128.27 48.26 0)
+		(fields_autoplaced yes)
+		(uuid "bae54665-890c-46b5-a56f-beb5fac06d9f")
+		(property "Reference" "#FLG04"
+			(at 74.93 183.515 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10323,8 +10001,8 @@
 				)
 			)
 		)
-		(property "Value" "GND"
-			(at 128.016 49.53 0)
+		(property "Value" "+V_PUMP"
+			(at 74.93 186.69 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -10334,7 +10012,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 128.27 54.61 0)
+			(at 74.93 181.61 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10345,7 +10023,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 128.27 54.61 0)
+			(at 74.93 181.61 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10355,8 +10033,8 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 128.27 54.61 0)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 74.93 181.61 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10367,12 +10045,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "810480bf-975c-4cc7-a806-990780a31fd9")
+			(uuid "d79b445e-28a6-40aa-9561-ebb38b8b5405")
 		)
 		(instances
 			(project "WateringSystem_PCB"
 				(path "/cf8c2f23-ff9e-40d6-9429-99a23bea10dd"
-					(reference "#PWR01")
+					(reference "#FLG04")
 					(unit 1)
 				)
 			)
@@ -10537,84 +10215,6 @@
 		)
 	)
 	(symbol
-		(lib_id "power:GND")
-		(at 210.82 81.28 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "d0ff29c5-518e-4fef-bad1-2356628b0fff")
-		(property "Reference" "#PWR04"
-			(at 210.82 87.63 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "GND"
-			(at 210.82 86.36 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 210.82 81.28 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 210.82 81.28 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 210.82 81.28 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "96ab865f-f11a-40f2-af93-7cea737c990a")
-		)
-		(instances
-			(project "WateringSystem_PCB"
-				(path "/cf8c2f23-ff9e-40d6-9429-99a23bea10dd"
-					(reference "#PWR04")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R")
 		(at 245.11 135.89 0)
 		(unit 1)
@@ -10691,6 +10291,84 @@
 			(project "WateringSystem_PCB"
 				(path "/cf8c2f23-ff9e-40d6-9429-99a23bea10dd"
 					(reference "R5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 128.27 54.61 180)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d45e5bb8-2c20-4ea7-974f-e62a8c44c2b0")
+		(property "Reference" "#PWR015"
+			(at 128.27 48.26 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 128.27 49.53 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 128.27 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 128.27 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 128.27 54.61 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "e04b975b-dfc5-4274-bb01-a63cf389298f")
+		)
+		(instances
+			(project "WateringSystem_PCB"
+				(path "/cf8c2f23-ff9e-40d6-9429-99a23bea10dd"
+					(reference "#PWR015")
 					(unit 1)
 				)
 			)
@@ -10937,8 +10615,8 @@
 		)
 	)
 	(symbol
-		(lib_id "power:+4V")
-		(at 153.67 54.61 0)
+		(lib_id "power:PWR_FLAG")
+		(at 261.62 114.3 270)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -10947,165 +10625,9 @@
 		(in_pos_files yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "e17a2964-6514-400a-881c-495ed7e58be7")
-		(property "Reference" "#PWR012"
-			(at 153.67 58.42 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+V_SOL"
-			(at 153.67 49.53 0)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 153.67 54.61 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 153.67 54.61 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+4V\""
-			(at 153.67 54.61 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "f4fa5ae6-6c35-4f6d-8163-b6126f7b1514")
-		)
-		(instances
-			(project "WateringSystem_PCB"
-				(path "/cf8c2f23-ff9e-40d6-9429-99a23bea10dd"
-					(reference "#PWR012")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+4V")
-		(at 250.19 30.48 270)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "e1ba932d-d4ac-4acd-8dc5-d2a990b9fd06")
-		(property "Reference" "#PWR013"
-			(at 246.38 30.48 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "+V_SOL"
-			(at 254 30.4799 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 250.19 30.48 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 250.19 30.48 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+4V\""
-			(at 250.19 30.48 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "9250af2b-7882-48b6-8934-433bfca1782f")
-		)
-		(instances
-			(project "WateringSystem_PCB"
-				(path "/cf8c2f23-ff9e-40d6-9429-99a23bea10dd"
-					(reference "#PWR013")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 74.93 158.75 0)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(uuid "e3f85485-9f7e-4d0c-a27c-64b00222192c")
-		(property "Reference" "#PWR017"
-			(at 74.93 162.56 0)
+		(uuid "f063ce69-7f09-48d1-9ce1-2a5d6717e6e6")
+		(property "Reference" "#FLG09"
+			(at 263.525 114.3 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11116,17 +10638,18 @@
 			)
 		)
 		(property "Value" "+5V"
-			(at 74.422 153.924 0)
+			(at 265.43 114.2999 90)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 		(property "Footprint" ""
-			(at 74.93 158.75 0)
+			(at 261.62 114.3 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11137,7 +10660,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 74.93 158.75 0)
+			(at 261.62 114.3 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11147,8 +10670,8 @@
 				)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 74.93 158.75 0)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 261.62 114.3 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11159,12 +10682,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "4b014889-6181-4a47-95b7-74a464cd1531")
+			(uuid "edef5159-6af4-42c0-bbca-63c9445fae39")
 		)
 		(instances
 			(project "WateringSystem_PCB"
 				(path "/cf8c2f23-ff9e-40d6-9429-99a23bea10dd"
-					(reference "#PWR017")
+					(reference "#FLG09")
 					(unit 1)
 				)
 			)
@@ -11484,6 +11007,85 @@
 			(project "WateringSystem_PCB"
 				(path "/cf8c2f23-ff9e-40d6-9429-99a23bea10dd"
 					(reference "C6")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 236.22 27.94 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "fc71713e-5087-42a7-b05d-d02d8ff26da7")
+		(property "Reference" "#PWR013"
+			(at 242.57 27.94 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 240.03 27.9399 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 236.22 27.94 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 236.22 27.94 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 236.22 27.94 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "9690d83b-c465-4383-a28a-ae520e9b4e26")
+		)
+		(instances
+			(project "WateringSystem_PCB"
+				(path "/cf8c2f23-ff9e-40d6-9429-99a23bea10dd"
+					(reference "#PWR013")
 					(unit 1)
 				)
 			)
