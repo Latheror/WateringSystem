@@ -203,9 +203,7 @@ void loop() {
     // -------------------------
     // Button
     // -------------------------
-    if (wasButtonPressed()) {
-        onManualWateringRequest();
-    }
+    bool buttonPressed = isButtonPressed();
 
     // -------------------------
     // WiFi
@@ -221,8 +219,9 @@ void loop() {
     Serial.println(wifiConnected ? "wifiConnected: true"
                                  : "wifiConnected: false");
 
-    setWifiLed(wifiConnected);
-    setAutoModeLed(autoMode);
+    // Status LEDs are only visible while the button is held.
+    setWifiLed(wifiConnected && buttonPressed);
+    setAutoModeLed(autoMode && buttonPressed);
 
     server.handleClient();
 
@@ -239,7 +238,7 @@ void loop() {
     soilStatus = soilStatusReading;
 
     bool batteryLow = battery.isLow(batteryVoltageReading);
-    setBatteryLowLed(batteryLow);
+    setBatteryLowLed(batteryLow && buttonPressed);
 
     // -------------------------
     // Watering control
@@ -252,7 +251,7 @@ void loop() {
 
     setPumpState(shouldWater);
     pumpActive = shouldWater;
-    setPumpLed(pumpActive);
+    setPumpLed(pumpActive && buttonPressed);
 
     Serial.println(shouldWater ? "Relay: ON" : "Relay: OFF");
 
