@@ -13,9 +13,11 @@ float SoilMoistureSensor::read() {
         ? 0.0f
         : (static_cast<float>(normalizedAnalog - _dryValue) / range) * 100.0f;
 
-    // Update status based on threshold comparison
-    // FLOATING: ADC reading is very low (sensor not properly in soil).
-    if (rawAnalog < _floatingThreshold) {
+    // Update status based on threshold comparison.
+    // With this sensor wiring, a disconnected/floating input is pulled to
+    // the ADC rail (4095), not to zero. Check this before DRY because a
+    // floating reading would otherwise also satisfy the dry threshold.
+    if (rawAnalog >= (_analogMax - _floatingThreshold)) {
         _status = SoilStatus::FLOATING;
     } else if (rawAnalog > _wetThreshold) {
         _status = SoilStatus::DRY;

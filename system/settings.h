@@ -42,7 +42,8 @@
 
 /**
  * @brief Soil moisture floating threshold (0-4095 ADC range).
- *        Values BELOW this threshold = FLOATING (sensor not in soil / unreliable reading).
+ *        Readings within this distance of the ADC maximum are FLOATING
+ *        (sensor not in soil / disconnected / unreliable reading).
  */
 #define SOIL_MOISTURE_FLOATING_THRESHOLD 100
 
