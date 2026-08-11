@@ -37,6 +37,7 @@ Battery battery;
 bool manualRequestPending = false;
 bool manualMode = false;
 bool pumpActive = false;
+bool shouldWater = false;
 bool autoMode = true;
 
 bool wateringActive = false;
@@ -246,8 +247,7 @@ void loop() {
     unsigned long currentTime = millis();
     bool soilIsDry = (soilStatusReading == SoilStatus::DRY);
 
-    bool shouldWater = updateWateringState(currentTime, soilIsDry, batteryLow);
-
+    shouldWater = updateWateringState(currentTime, soilIsDry, batteryLow);
     Serial.println(shouldWater ? "shouldWater: TRUE" : "shouldWater: FALSE");
 
     setPumpState(shouldWater);

@@ -8,6 +8,7 @@
 // =========================
 extern WebServer server;
 extern bool pumpActive;
+extern bool shouldWater;
 extern bool autoMode;
 extern void onManualWateringRequest();
 
@@ -96,6 +97,7 @@ h1 {
 .solar { border-left: 6px solid #f39c12; }
 .battery { border-left: 6px solid #f1c40f; }
 .pump { border-left: 6px solid #3498db; }
+.should-water { border-left: 6px solid #e67e22; }
 
 .card-btn {
     border: none;
@@ -161,6 +163,11 @@ async function toggleAutoMode() {
 <div class="value">%PUMP%</div>
 </div>
 
+<div class="card should-water">
+<h2>Should Water</h2>
+<div class="value">%SHOULD_WATER%</div>
+</div>
+
 <button class="card auto card-btn" onclick="toggleAutoMode()">
 <h2>Auto Mode</h2>
 <div class="value">%AUTO%</div>
@@ -192,6 +199,7 @@ static String renderPage()
 
     page.replace("%SOLAR%", String(solarVoltage, 2));
     page.replace("%BATTERY%", String(batteryVoltage, 2));
+    page.replace("%SHOULD_WATER%", shouldWater ? "✅ YES" : "❌ NO");
     page.replace("%PUMP%", pumpActive ? "🟢 ON" : "⚪ OFF");
     page.replace("%AUTO%", autoMode ? "✅ ON" : "❌ OFF");
     {

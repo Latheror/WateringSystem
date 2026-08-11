@@ -22,6 +22,7 @@ extern float solarVoltage;
 extern float batteryVoltage;
 extern float soilMoisture;
 extern SoilStatus soilStatus;
+extern bool shouldWater;
 extern bool pumpActive;
 extern bool autoMode;
 extern unsigned long remainingWaitingTimeMs;
