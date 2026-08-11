@@ -103,6 +103,7 @@ h1 {
     border: none;
     cursor: pointer;
     font-family: inherit;
+    font-size: inherit;
     color: #333;
     width: 100%;
     transition: transform 0.1s ease;
