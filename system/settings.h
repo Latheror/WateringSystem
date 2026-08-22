@@ -22,7 +22,7 @@
 /**
  * @brief GPIO pin controlling the relay module (pump/valve).
  */
-#define RELAY_PIN 2
+#define RELAY_PIN 10
 
 
 // =========================
