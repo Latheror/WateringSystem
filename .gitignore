@@ -24,3 +24,7 @@ PCB/**/report.txt
 # Firmware
 # Local user settings contains Wi-Fi credentials.
 system/settings_user.h
+
+# MQTT local credentials and generated runtime data.
+MQTT/.env
+MQTT/runtime/
