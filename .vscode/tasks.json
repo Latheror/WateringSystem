@@ -48,7 +48,7 @@
         {
             "label": "[MQTT] Publish Subscribe Test",
             "type": "shell",
-            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File MQTT/scripts/broker.ps1 test; powershell -NoProfile -ExecutionPolicy Bypass -File MQTT/scripts/test.ps1",
+            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File MQTT/scripts/broker.ps1 test; powershell -NoProfile -ExecutionPolicy Bypass -File MQTT/scripts/test.ps1 -Topic watering/state -MessageFile MQTT/examples/state-message.json; powershell -NoProfile -ExecutionPolicy Bypass -File MQTT/scripts/test.ps1 -Topic watering/commands -MessageFile MQTT/examples/command-message.json",
             "group": "test",
             "problemMatcher": [],
             "detail": "Run an authenticated MQTTX publish/subscribe test."

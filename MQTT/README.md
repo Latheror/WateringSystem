@@ -31,4 +31,19 @@ The same image, credentials, topics, ports, and Compose configuration are used o
 Automated publish/subscribe checks use MQTTX CLI (`mqttx pub` and `mqttx sub`).
 Mosquitto is not required or used by this project.
 
+The state test publishes `examples/state-message.json` to `watering/state`:
+
+```powershell
+powershell -File scripts/test.ps1 -Topic watering/state -MessageFile examples/state-message.json
+```
+
+The command test publishes `examples/command-message.json` to
+`watering/commands`:
+
+```powershell
+powershell -File scripts/test.ps1 -Topic watering/commands -MessageFile examples/command-message.json
+```
+
+Both payloads use the formats expected by the ESP32 firmware.
+
 Passwords are never printed by the scripts.

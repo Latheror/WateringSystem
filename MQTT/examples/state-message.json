@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "deviceId": "watering-device-01",
+  "timestamp": 0,
+  "timestampValid": false,
+  "soilStatus": "DRY",
+  "soilMoisture": 72.4,
+  "solarVoltage": 4.85,
+  "batteryVoltage": 3.91,
+  "pumpActive": false,
+  "shouldWater": true,
+  "autoMode": true,
+  "remainingWaitingTimeSeconds": 0,
+  "batteryLow": false,
+  "wifiConnected": true,
+  "mqttConnected": true,
+  "firmwareVersion": "1.0.0"
+}
