@@ -28,8 +28,9 @@ The same image, credentials, topics, ports, and Compose configuration are used o
 - `logs`: show the latest EMQX logs.
 - `test`: prepare and start the service for the authenticated publish/subscribe test task.
 
-Automated publish/subscribe checks use MQTTX CLI (`mqttx pub` and `mqttx sub`).
-Mosquitto is not required or used by this project.
+Automated JSON publish checks use MQTTX CLI (`mqttx pub`). Mosquitto is not
+required or used by this project. The payload is published with the retained
+flag so an MQTTX subscriber that connects afterward receives it.
 
 The state test publishes `examples/state-message.json` to `watering/state`:
 

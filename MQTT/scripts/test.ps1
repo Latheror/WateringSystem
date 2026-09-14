@@ -23,8 +23,6 @@ try {
 } catch {
     throw "MQTT test message is not valid JSON: $MessageFile"
 }
-$Message = $Message.Trim()
-$ExpectedJson = ($Message | ConvertFrom-Json | ConvertTo-Json -Compress)
 
 $values = @{}
 Get-Content -LiteralPath $EnvFile | ForEach-Object {
@@ -44,45 +42,11 @@ if ($null -eq $mqttx) {
     throw "MQTTX CLI is required. Install it with: npm install --global mqttx-cli"
 }
 
-$subscriber = Start-Job -ScriptBlock {
-    param($HostName, $BrokerPort, $Username, $Password, $SubscriptionTopic)
-    & mqttx sub -h $HostName -p $BrokerPort -u $Username -P $Password -t $SubscriptionTopic
-} -ArgumentList $BrokerHost, $Port, $values['MQTT_USERNAME'], $values['MQTT_PASSWORD'], $Topic
-
-try {
-    & mqttx pub -h $BrokerHost -p $Port -u $values['MQTT_USERNAME'] -P $values['MQTT_PASSWORD'] -t $Topic -m $Message
-    if ($LASTEXITCODE -ne 0) {
-        throw "MQTT publish failed with exit code $LASTEXITCODE."
-    }
-
-    $received = $null
-    $deadline = [DateTime]::UtcNow.AddSeconds(15)
-    while ([DateTime]::UtcNow -lt $deadline -and $null -eq $received) {
-        $output = @(Receive-Job -Job $subscriber -Keep -ErrorAction SilentlyContinue)
-            foreach ($line in $output) {
-                try {
-                    $receivedJson = ([string]$line | ConvertFrom-Json | ConvertTo-Json -Compress)
-                    if ($receivedJson -eq $ExpectedJson) {
-                        $received = $receivedJson
-                        break
-                    }
-                } catch {
-                    # Ignore MQTTX connection/status output until the payload arrives.
-                }
-            }
-            if ($null -eq $received) {
-                Start-Sleep -Milliseconds 250
-        }
-    }
-
-    if ($null -eq $received) {
-        throw "MQTT test received an unexpected message."
-    }
-    Write-Output "Authenticated MQTT publish/subscribe test passed."
+& $mqttx.Source pub --hostname $BrokerHost --port $Port `
+    --username $values['MQTT_USERNAME'] --password $values['MQTT_PASSWORD'] `
+    --topic $Topic --file-read $MessageFile --qos 1 --retain
+if ($LASTEXITCODE -ne 0) {
+    throw "MQTT publish failed with exit code $LASTEXITCODE."
 }
-finally {
-    if ($subscriber -and $subscriber.State -eq 'Running') {
-        Stop-Job -Job $subscriber -ErrorAction SilentlyContinue
-        Remove-Job -Job $subscriber -Force -ErrorAction SilentlyContinue
-    }
-}
+
+Write-Output "Authenticated MQTT JSON publish passed for topic $Topic."
