@@ -1,6 +1,5 @@
 #include <Arduino.h>
 #include <WiFi.h>
-#include <WebServer.h>
 #include "wifi_handler.h"
 #include "settings.h"
 

@@ -1,17 +1,13 @@
 #include <Arduino.h>
-#include <WebServer.h>
 
 #include "settings.h"
 #include "wifi_handler.h"
 #include "pump_handler.h"
-#include "webapp.h"
 #include "soil_moisture_sensor.h"
 #include "voltage_sensor.h"
 #include "battery.h"
 #include "led.h"
 #include "button.h"
-
-WebServer server(80);
 
 // =========================
 // WIFI
@@ -43,6 +39,12 @@ bool autoMode = true;
 bool wateringActive = false;
 bool wasWifiConnected = false;
 
+// Latest coherent sample published by the MQTT state publisher.
+float solarVoltage = 0.0f;
+float batteryVoltage = 0.0f;
+float soilMoisture = 0.0f;
+SoilStatus soilStatus = SoilStatus::UNKNOWN;
+
 // Initialize so watering is immediately available after boot.
 unsigned long lastWateringStartTime =
     (unsigned long)(0 - AUTO_WATERING_INTERVAL_MS);
@@ -52,15 +54,10 @@ unsigned long lastWateringStartTime =
 unsigned long remainingWaitingTimeMs = 0;
 
 // =========================
-// WEB EVENT HANDLER
+// INPUT EVENT HANDLER
 // =========================
-/**
- * Web server callback invoked when the user requests manual watering.
- * Sets a flag that is picked up by updateWateringState() on the next loop.
- */
 void onManualWateringRequest() {
     manualRequestPending = true;
-    Serial.println("Manual watering requested");
 }
 
 // =========================
@@ -168,8 +165,8 @@ bool updateWateringState(unsigned long currentTime, bool soilIsDry,
 }
 
 /**
- * Arduino setup(). Initializes serial, pins, LEDs, the button, WiFi,
- * and the web app. Runs once on boot.
+ * Arduino setup(). Initializes serial, pins, LEDs, the button, and WiFi.
+ * Runs once on boot.
  */
 void setup() {
     Serial.begin(115200);
@@ -189,15 +186,11 @@ void setup() {
     bool wifiOk = wifiReconnector.begin();
     setWifiLed(wifiOk);
 
-    initWebApp();
-
-    Serial.println("Web server started on port 80");
 }
 
 /**
  * Arduino loop(). Reads inputs (button, WiFi, sensors), updates the
- * watering state machine, drives outputs (pump, LEDs, relay), and
- * publishes the latest readings for the web app.
+ * watering state machine, and drives outputs (pump, LEDs, relay).
  */
 void loop() {
     // -------------------------
@@ -222,8 +215,6 @@ void loop() {
     // Status LEDs are only visible while the button is held.
     setWifiLed(wifiConnected && buttonPressed);
     setAutoModeLed(autoMode && buttonPressed);
-
-    server.handleClient();
 
     // -------------------------
     // Sensors
@@ -256,7 +247,7 @@ void loop() {
     Serial.println(shouldWater ? "Relay: ON" : "Relay: OFF");
 
     // -------------------------
-    // Web data
+    // Keep the latest coherent sample available to the MQTT state publisher.
     // -------------------------
     solarVoltage = solarVoltageReading;
     batteryVoltage = batteryVoltageReading;

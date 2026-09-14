@@ -3,7 +3,6 @@
 
 #include <Arduino.h>
 #include <WiFi.h>
-#include <WebServer.h>
 
 /**
  * @file wifi_handler.h
@@ -21,11 +20,6 @@
  * @return true if connected successfully, false otherwise
  */
 bool connectToWiFi(const char* ssid, const char* password);
-
-/**
- * @brief Web server instance.
- */
-extern WebServer server;
 
 /**
  * @brief Automatic WiFi reconnector with exponential backoff.
