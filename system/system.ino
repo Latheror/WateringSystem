@@ -62,10 +62,26 @@ unsigned long remainingWateringWaitingTimeMs = 0;
 // =========================
 // INPUT EVENT HANDLER
 // =========================
+
+/**
+ * Marks a manual watering request for processing by updateWateringState().
+ * The request is deferred so the MQTT callback does not start the pump while
+ * the main loop is handling network traffic.
+ */
 void onManualWateringRequest() {
     manualRequestPending = true;
 }
 
+/**
+ * Applies an MQTT command to the watering controller.
+ *
+ * The requested mode takes effect immediately. A manual watering request is
+ * queued for the next watering-state update, where it is consumed and may
+ * bypass automatic watering conditions as defined by the state machine.
+ *
+ * @param requestedAutoMode Whether automatic watering should be enabled.
+ * @param manualWatering   Whether a manual watering cycle was requested.
+ */
 void onMqttCommand(bool requestedAutoMode, bool manualWatering) {
     autoMode = requestedAutoMode;
     if (manualWatering) {
@@ -73,6 +89,13 @@ void onMqttCommand(bool requestedAutoMode, bool manualWatering) {
     }
 }
 
+/**
+ * Completes the current wake cycle and enters timed deep sleep.
+ *
+ * The pump is forced off before the sleep interval is prepared. The
+ * automatic-watering cooldown is adjusted for the sleep period and retained
+ * across deep sleep before the ESP32 enters its timer wake.
+ */
 void prepareAndEnterDeepSleep() {
     setPumpState(false);
 
@@ -237,19 +260,25 @@ void loop() {
     // -------------------------
     wifiReconnector.handle();
     bool wifiConnected = wifiReconnector.isConnected();
+    bool wifiJustConnected = wifiConnected && !wasWifiConnected;
 
-    if (wifiConnected && !wasWifiConnected) {
+    if (wifiJustConnected) {
         WiFi.setSleep(true);
     }
     wasWifiConnected = wifiConnected;
 
     unsigned long currentTime = millis();
     if (wifiConnected && !isMqttConnected() &&
-        currentTime - wakeCycleStartTime < MQTT_WAKE_CYCLE_DEADLINE_MS &&
+        (currentTime - wakeCycleStartTime < MQTT_WAKE_CYCLE_DEADLINE_MS ||
+         wifiJustConnected) &&
         currentTime - lastMqttAttemptTime >= MQTT_CONNECTION_TIMEOUT_MS) {
         lastMqttAttemptTime = currentTime;
+        Serial.println("[MQTT] Connection attempt started");
         if (connectMqtt()) {
+            Serial.println("[MQTT] Connected and subscribed");
             statePublishedForConnection = false;
+        } else {
+            Serial.println("[MQTT] Connection attempt failed");
         }
     }
     handleMqtt();
@@ -288,11 +317,10 @@ void loop() {
     setPumpLed(pumpActive && buttonPressed);
 
     if (isMqttConnected() && !statePublishedForConnection) {
-        publishMqttState(
+        statePublishedForConnection = publishMqttState(
             soilMoisture, soilStatus, solarVoltage, batteryVoltage,
             pumpActive, shouldWater, autoMode,
             remainingWateringWaitingTimeMs / 1000UL, batteryLow, wifiConnected);
-        statePublishedForConnection = true;
     }
 
     wakeCycleEvaluated = true;

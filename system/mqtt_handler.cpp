@@ -247,7 +247,10 @@ bool publishMqttState(float soilMoisture, SoilStatus soilStatus,
                             static_cast<unsigned long>(payloadLength),
                             MQTT_RETAIN_STATE, MQTT_QOS);
     mqttClient.print(payload);
-    return mqttClient.endMessage() == 1;
+    bool published = mqttClient.endMessage() == 1;
+    Serial.println(published ? "[MQTT] State published"
+                             : "[MQTT] State publish failed");
+    return published;
 }
 
 bool isMqttConnected() {

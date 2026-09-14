@@ -89,6 +89,19 @@ The embedded web server provides:
 - A control to request manual watering (active only in manual mode).
 - Periodic page updates for near-real-time status.
 
+## MQTT Commands and Deep Sleep
+
+MQTT commands are handled through `onMqttCommand()`. The requested automatic
+mode is applied immediately, while a manual watering request is queued for the
+main-loop watering state machine. This keeps pump control in one execution path
+and allows manual watering to follow its documented override behavior.
+
+After the wake cycle has run for at least 30 seconds and no watering cycle is
+active, the main loop forces the pump off, accounts for the upcoming sleep in
+the persisted automatic-watering cooldown, and enters timed deep sleep. The
+timer wakes the ESP32 after five minutes. MQTT or Wi-Fi connectivity does not
+extend this deadline.
+
 ## Runtime Data Flow
 
 1. The main loop reads the soil sensor, voltage sensors, button state, and
