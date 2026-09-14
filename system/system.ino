@@ -2,6 +2,7 @@
 
 #include "settings.h"
 #include "wifi_handler.h"
+#include "mqtt_handler.h"
 #include "pump_handler.h"
 #include "soil_moisture_sensor.h"
 #include "voltage_sensor.h"
@@ -38,6 +39,8 @@ bool autoMode = true;
 
 bool wateringActive = false;
 bool wasWifiConnected = false;
+bool statePublishedForConnection = false;
+unsigned long lastMqttAttemptTime = 0;
 
 // Latest coherent sample published by the MQTT state publisher.
 float solarVoltage = 0.0f;
@@ -58,6 +61,13 @@ unsigned long remainingWaitingTimeMs = 0;
 // =========================
 void onManualWateringRequest() {
     manualRequestPending = true;
+}
+
+void onMqttCommand(bool requestedAutoMode, bool manualWatering) {
+    autoMode = requestedAutoMode;
+    if (manualWatering) {
+        onManualWateringRequest();
+    }
 }
 
 // =========================
@@ -182,10 +192,10 @@ void setup() {
 
     initLeds();
     initButton();
+    initMqtt(onMqttCommand);
 
     bool wifiOk = wifiReconnector.begin();
     setWifiLed(wifiOk);
-
 }
 
 /**
@@ -209,8 +219,15 @@ void loop() {
     }
     wasWifiConnected = wifiConnected;
 
-    Serial.println(wifiConnected ? "wifiConnected: true"
-                                 : "wifiConnected: false");
+    unsigned long currentTime = millis();
+    if (wifiConnected && !isMqttConnected() &&
+        currentTime - lastMqttAttemptTime >= MQTT_CONNECTION_TIMEOUT_MS) {
+        lastMqttAttemptTime = currentTime;
+        if (connectMqtt()) {
+            statePublishedForConnection = false;
+        }
+    }
+    handleMqtt();
 
     // Status LEDs are only visible while the button is held.
     setWifiLed(wifiConnected && buttonPressed);
@@ -234,7 +251,6 @@ void loop() {
     // -------------------------
     // Watering control
     // -------------------------
-    unsigned long currentTime = millis();
     bool soilIsDry = (soilStatusReading == SoilStatus::DRY);
 
     shouldWater = updateWateringState(currentTime, soilIsDry, batteryLow);
@@ -244,7 +260,13 @@ void loop() {
     pumpActive = shouldWater;
     setPumpLed(pumpActive && buttonPressed);
 
-    Serial.println(shouldWater ? "Relay: ON" : "Relay: OFF");
+    if (isMqttConnected() && !statePublishedForConnection) {
+        publishMqttState(
+            soilMoisture, soilStatus, solarVoltage, batteryVoltage,
+            pumpActive, shouldWater, autoMode,
+            remainingWaitingTimeMs / 1000UL, batteryLow, wifiConnected);
+        statePublishedForConnection = true;
+    }
 
     // -------------------------
     // Keep the latest coherent sample available to the MQTT state publisher.

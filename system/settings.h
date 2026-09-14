@@ -9,6 +9,39 @@
 #include "settings_user.h"
 
 // =========================
+// MQTT CONFIGURATION
+// =========================
+
+/**
+ * @brief MQTT broker address and credentials are supplied by settings_user.h.
+ */
+#ifndef MQTT_BROKER_HOST
+#define MQTT_BROKER_HOST ""
+#endif
+
+#ifndef MQTT_USERNAME
+#define MQTT_USERNAME ""
+#endif
+
+#ifndef MQTT_PASSWORD
+#define MQTT_PASSWORD ""
+#endif
+
+#define MQTT_BROKER_PORT              1883
+#define MQTT_CLIENT_ID               "watering-device-01"
+#define MQTT_STATE_TOPIC             "watering/state"
+#define MQTT_COMMAND_TOPIC           "watering/commands"
+#define MQTT_QOS                     1
+#define MQTT_RETAIN_STATE            true
+#define MQTT_KEEP_ALIVE_SECONDS      60
+#define MQTT_CONNECTION_TIMEOUT_MS   5000
+#define MQTT_WAKE_CYCLE_DEADLINE_MS  30000
+#define MQTT_RETRY_LIMIT              2
+#define MQTT_COMMAND_ID_MAX_LENGTH    63
+#define DEEP_SLEEP_WAKE_INTERVAL_SECONDS (5 * 60)
+#define FIRMWARE_VERSION             "1.0.0"
+
+// =========================
 // GPIO PIN ASSIGNMENTS
 // =========================
 
