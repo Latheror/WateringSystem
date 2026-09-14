@@ -9,6 +9,8 @@
 #include "battery.h"
 #include "led.h"
 #include "button.h"
+#include "persistence.h"
+#include "deepsleep.h"
 
 // =========================
 // WIFI
@@ -41,6 +43,9 @@ bool wateringActive = false;
 bool wasWifiConnected = false;
 bool statePublishedForConnection = false;
 unsigned long lastMqttAttemptTime = 0;
+unsigned long wakeCycleStartTime = 0;
+unsigned long lastWateringTickTime = 0;
+bool wakeCycleEvaluated = false;
 
 // Latest coherent sample published by the MQTT state publisher.
 float solarVoltage = 0.0f;
@@ -48,13 +53,11 @@ float batteryVoltage = 0.0f;
 float soilMoisture = 0.0f;
 SoilStatus soilStatus = SoilStatus::UNKNOWN;
 
-// Initialize so watering is immediately available after boot.
 unsigned long lastWateringStartTime =
     (unsigned long)(0 - AUTO_WATERING_INTERVAL_MS);
 
-// Countdown until another watering window may begin.
-// Read by webapp.cpp to display the remaining wait time.
-unsigned long remainingWaitingTimeMs = 0;
+// Countdown until another automatic watering window may begin.
+unsigned long remainingWateringWaitingTimeMs = 0;
 
 // =========================
 // INPUT EVENT HANDLER
@@ -68,6 +71,14 @@ void onMqttCommand(bool requestedAutoMode, bool manualWatering) {
     if (manualWatering) {
         onManualWateringRequest();
     }
+}
+
+void prepareAndEnterDeepSleep() {
+    setPumpState(false);
+
+    const uint32_t sleepDurationMs = DEEP_SLEEP_WAKE_INTERVAL_SECONDS * 1000UL;
+    prepareWateringWaitingTimeForDeepSleep(sleepDurationMs);
+    enterDeepSleep();
 }
 
 // =========================
@@ -110,7 +121,7 @@ void readAndLogSensors(float &soilMoisture, SoilStatus &soilStatus,
  * Advances the watering state machine by one tick.
  *
  * Starts a new watering cycle if either a manual request is pending, or
- * the soil is dry and the cooldown since the last cycle has elapsed.
+ * the soil is dry and the watering wait time has elapsed.
  * Ends the cycle once AUTO_WATERING_DURATION_MS has passed. Manual watering
  * is allowed even when the battery is low.
  *
@@ -122,6 +133,11 @@ void readAndLogSensors(float &soilMoisture, SoilStatus &soilStatus,
 bool updateWateringState(unsigned long currentTime, bool soilIsDry,
                          bool batteryLow) {
     unsigned long elapsedSinceStart = currentTime - lastWateringStartTime;
+    unsigned long elapsedSinceTick = currentTime - lastWateringTickTime;
+    lastWateringTickTime = currentTime;
+
+    advanceWateringWaitingTime(elapsedSinceTick);
+    remainingWateringWaitingTimeMs = getRemainingWateringWaitingTimeMs();
 
     // Low battery stops automatic watering, but not manual watering.
     if (batteryLow && wateringActive && !manualMode) {
@@ -132,14 +148,19 @@ bool updateWateringState(unsigned long currentTime, bool soilIsDry,
 
     // Try to start a new watering cycle
     if (!wateringActive) {
-        bool cooldownFinished =
-            elapsedSinceStart >= AUTO_WATERING_INTERVAL_MS;
+        bool wateringWaitFinished = getRemainingWateringWaitingTimeMs() == 0;
 
-        // Manual requests are intentional overrides and always bypass cooldown.
+        // Manual requests are intentional overrides and bypass the wait time.
         bool canStartManual = manualRequestPending;
-        bool canStartAuto = autoMode && soilIsDry && cooldownFinished && !batteryLow;
+        bool canStartAuto = autoMode && soilIsDry && wateringWaitFinished && !batteryLow;
 
-        if (canStartManual || canStartAuto) {
+        if (canStartManual ||
+            (canStartAuto && isWateringWaitingTimePersistenceHealthy())) {
+            if (canStartAuto) {
+                if (!startAutomaticWateringWaitingTime(AUTO_WATERING_INTERVAL_MS)) {
+                    return false;
+                }
+            }
             wateringActive = true;
             manualMode = canStartManual;
             manualRequestPending = false;
@@ -156,7 +177,7 @@ bool updateWateringState(unsigned long currentTime, bool soilIsDry,
     // Run / finish the active watering window
     if (wateringActive) {
         if (elapsedSinceStart < AUTO_WATERING_DURATION_MS) {
-            remainingWaitingTimeMs = 0;
+            remainingWateringWaitingTimeMs = 0;
             return true;
         }
 
@@ -165,8 +186,8 @@ bool updateWateringState(unsigned long currentTime, bool soilIsDry,
         Serial.println("Watering window finished");
     }
 
-    // In cooldown: update the countdown shown on the web page
-    remainingWaitingTimeMs =
+    // Update the remaining automatic-watering wait time.
+    remainingWateringWaitingTimeMs =
         (elapsedSinceStart < AUTO_WATERING_INTERVAL_MS)
             ? (AUTO_WATERING_INTERVAL_MS - elapsedSinceStart)
             : 0;
@@ -193,8 +214,11 @@ void setup() {
     initLeds();
     initButton();
     initMqtt(onMqttCommand);
+    initWateringWaitingTimePersistence();
 
     bool wifiOk = wifiReconnector.begin();
+    wakeCycleStartTime = millis();
+    lastWateringTickTime = wakeCycleStartTime;
     setWifiLed(wifiOk);
 }
 
@@ -221,6 +245,7 @@ void loop() {
 
     unsigned long currentTime = millis();
     if (wifiConnected && !isMqttConnected() &&
+        currentTime - wakeCycleStartTime < MQTT_WAKE_CYCLE_DEADLINE_MS &&
         currentTime - lastMqttAttemptTime >= MQTT_CONNECTION_TIMEOUT_MS) {
         lastMqttAttemptTime = currentTime;
         if (connectMqtt()) {
@@ -241,9 +266,11 @@ void loop() {
     readAndLogSensors(soilMoistureReading, soilStatusReading, solarVoltageReading,
                        batteryVoltageReading);
 
-    // Publish the same coherent sample that drives the controller and UI.
+    // Publish the same coherent sample that drives the controller and MQTT.
     soilMoisture = soilMoistureReading;
     soilStatus = soilStatusReading;
+    solarVoltage = solarVoltageReading;
+    batteryVoltage = batteryVoltageReading;
 
     bool batteryLow = battery.isLow(batteryVoltageReading);
     setBatteryLowLed(batteryLow && buttonPressed);
@@ -264,15 +291,16 @@ void loop() {
         publishMqttState(
             soilMoisture, soilStatus, solarVoltage, batteryVoltage,
             pumpActive, shouldWater, autoMode,
-            remainingWaitingTimeMs / 1000UL, batteryLow, wifiConnected);
+            remainingWateringWaitingTimeMs / 1000UL, batteryLow, wifiConnected);
         statePublishedForConnection = true;
     }
 
-    // -------------------------
-    // Keep the latest coherent sample available to the MQTT state publisher.
-    // -------------------------
-    solarVoltage = solarVoltageReading;
-    batteryVoltage = batteryVoltageReading;
+    wakeCycleEvaluated = true;
+    if (wakeCycleEvaluated &&
+        currentTime - wakeCycleStartTime >= MQTT_WAKE_CYCLE_DEADLINE_MS &&
+        !wateringActive) {
+        prepareAndEnterDeepSleep();
+    }
 
     // -------------------------
     // Loop delay

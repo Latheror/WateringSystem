@@ -55,16 +55,16 @@ The main control logic is implemented in `system.ino`.
     - the soil reading is `DRY` (not `WET`, and not `FLOATING` — a
       `FLOATING` reading is treated as a safety condition and never triggers
       watering),
-    - the cooldown period has elapsed,
+    - the automatic-watering wait period has elapsed,
     - the battery is above the pump safety threshold.
 - **Manual watering** starts on request from the web dashboard while in
   manual mode, and **bypasses all other conditions** (battery threshold,
-  cooldown, soil reading).
+  automatic-watering wait period, soil reading).
 - **Watering cycle**: once started, the pump stays active for the configured
   duration, or until battery protection interrupts it.
 - **Battery protection**: stops an *automatic* cycle early if the battery
   drops too low. Manual cycles are not subject to this check.
-- **Cooldown**: after any automatic watering cycle, prevents another
+- **Automatic-watering wait period**: after any automatic watering cycle, prevents another
   automatic cycle from starting until the configured interval has elapsed.
   Does not apply to manual watering.
 
@@ -94,7 +94,7 @@ The embedded web server provides:
 1. The main loop reads the soil sensor, voltage sensors, button state, and
    Wi-Fi state, while the web server processes incoming requests.
 2. The watering state machine evaluates the current mode, automatic
-   conditions (soil, battery, cooldown), and any pending manual request.
+  conditions (soil, battery, automatic-watering wait period), and any pending manual request.
 3. The firmware drives the pump according to the watering state.
 4. The firmware drives the status LEDs according to system state, gated by
    whether the button is currently held.
